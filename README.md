@@ -12,7 +12,6 @@ This is a small react web app search the Spotify API for songs and add them to a
     * The purpose of your project
     * Technologies used
     * Features
-    * Future work
 
 ## Features
 * Users can search for songs by song title and other attributes like artist’s name, genre, etc.
