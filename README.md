@@ -1,6 +1,6 @@
 # Jamming
 
-This is a small react web app search the Spotify API for songs and add them to a playlist that will be added to your profile once yout authenticated the app.
+A small react web app that can search the Spotify API, add songs to playlists and save them your profile.
 
 ## Project Requirements
 
