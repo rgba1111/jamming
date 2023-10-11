@@ -1,8 +1,9 @@
 import React from 'react';
 import SearchBar from './../SearchBar/SearchBar';
 import SearchResults from './../SearchResults/SearchResults';
-import { SearchProvider } from './../SearchContext/SearchContext';
-import Tracks from './../Tracks/Tracks';
+import Track from './../Track/Track';
+import TrackList from './../TrackList/TrackList';
+
 
 // use global variables
 export const ACTIONS = {
@@ -11,18 +12,16 @@ export const ACTIONS = {
 }
 
 function App() {
-
   return (
     <>
-      <SearchProvider>
-        <div className="App">
-          <SearchBar />
-          <SearchResults />
-          <Tracks />
-        </div>
-      </SearchProvider>
-
+      <div className="App">
+        <SearchBar />
+        <SearchResults />
+        <TrackList />
+        <Track />
+      </div>
     </>
+
   );
 }
 
