@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSearch } from './SearchContext'; // Import the useSearch hook from the context
+import { useSearch } from '../SearchContext/SearchContext'; // Import the useSearch hook from the context
 
 // SearchBar component responsible for handling search input and API requests
 export default function SearchBar() {

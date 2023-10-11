@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSearch } from './SearchContext'; // Import the useSearch hook from the context
+import { useSearch } from '../SearchContext/SearchContext'; // Import the useSearch hook from the context
 
 // SearchResults component responsible for displaying search results
 export default function SearchResults() {

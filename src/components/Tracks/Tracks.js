@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { useSearch } from './SearchContext';
+import { useSearch } from '../SearchContext/SearchContext';
 
 export default function Tracks() {
     const { tracks, removeTrack } = useSearch();

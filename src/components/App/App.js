@@ -1,8 +1,8 @@
 import React from 'react';
-import SearchBar from './../SearchBar';
-import SearchResults from './../SearchResults';
-import { SearchProvider } from './../SearchContext';
-import Tracks from './../Tracks';
+import SearchBar from './../SearchBar/SearchBar';
+import SearchResults from './../SearchResults/SearchResults';
+import { SearchProvider } from './../SearchContext/SearchContext';
+import Tracks from './../Tracks/Tracks';
 
 // use global variables
 export const ACTIONS = {
@@ -10,10 +10,7 @@ export const ACTIONS = {
   DELETE_TODO: 'delete-todo'
 }
 
-
-
 function App() {
-
 
   return (
     <>
