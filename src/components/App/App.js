@@ -1,8 +1,8 @@
 import React from 'react';
-import SearchBar from './SearchBar';
-import SearchResults from './SearchResults';
-import { SearchProvider } from './SearchContext';
-import Tracks from './Tracks';
+import SearchBar from './../SearchBar';
+import SearchResults from './../SearchResults';
+import { SearchProvider } from './../SearchContext';
+import Tracks from './../Tracks';
 
 // use global variables
 export const ACTIONS = {
@@ -11,7 +11,10 @@ export const ACTIONS = {
 }
 
 
+
 function App() {
+
+
   return (
     <>
       <SearchProvider>
@@ -21,6 +24,7 @@ function App() {
           <Tracks />
         </div>
       </SearchProvider>
+
     </>
   );
 }
