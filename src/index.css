@@ -1,13 +1,171 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Satisfy&display=swap');
+
+* {
+  font-family: 'IBM Plex Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.025px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root {
+  --white: #fff;
+  --black: #000;
+  --gray10: #F2F4F5;
+  --gray20: #DEE0E1;
+  --gray30: #C0C2C3;
+  --gray50: #2E333A;
+  --gray90: #1D2229;
+}
+
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --primaryHighlight: var(--gray50);
+    --secondaryHighlight: var(--gray90);
+    --tertiaryHighlight: var(--black);
+    --background: var(--gray10);
+    --foreground: var(--white);
+    --accent: rgba(198, 197, 202, 0.5);
+    --primaryText: var(--black);
+    --secondaryText: var(--gray90);
+  }
+
+  button{
+    border: 1px solid var(--primaryHighlight);
+    background-color: var(--primaryHighlight);
+    color: var(--white);
+  }
+
+  button:hover{
+    background-color: var(--tertiaryHighlight);
+    border-color: var(--secondaryHighlight);
+    color: var(--gray10);
+  }
+
+  button:active{
+    background-color: var(--secondaryHighlight);
+    border-color: var(--primaryHighlight);
+  }
+
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primaryHighlight: var(--white);
+    --secondaryHighlight: var(--white);
+    --tertiaryHighlight: var(--gray10);
+    --background: var(--gray90);
+    --foreground: var(--gray50);
+    --accent: rgba(61, 60, 66, 0.5);
+    --primaryText: var(--white);
+    --secondaryText: var(--gray10);
+    --input: var(--gray10);
+    --input: #333941;
+  }
+
+  button{
+    border: 1px solid var(--gray10);
+    background-color: var(--primaryHighlight);
+    color: var(--black);
+  }
+  button:hover{
+    background-color: var(--gray20);
+    color: var(--black);
+  }
+
+  button:active{
+    background-color: var(--gray30);
+  }
+  
+}
+
+
+body {
+  background-color: var(--background);
+}
+
+h1{
+  font-family: 'Satisfy', cursive;
+  color: var(--primaryText);
+  letter-spacing: -0.2px;
+  font-size: 2.4rem;
+  margin: 0;
+}
+
+h2{
+  color: var(--secondaryText);
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+p{
+  color: var(--secondaryText);
+  font-size: 1.125rem;
+  line-height: 1.35;
+}
+
+.highlight{
+  color: var(--primaryHighlight);
+}
+
+input{
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  flex: 1 0 0;
+  border: 1px solid var(--accent);
+  background-color: var(--input);
+  color: var(--primaryText);
+  transition: all 0.2s ease-in-out;
+}
+
+input:focus{
+  outline: none;
+  border-color: var(--primaryHighlight);
+}
+
+button{
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  min-width: 8.2rem;
+  text-align: center;
+
+}
+
+form{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: .5rem;
+}
+
+.Icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  background-size: cover; 
+  background-position: center center; 
+}
+
+.Label{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 1 0 0;
+  gap: .5rem;
+  margin: 1rem 0 1rem 0;
+}
+
+#searchIcon {
+  background: url('./icons/search.svg') no-repeat;
+}
+
+#editIcon {
+  background: url('./icons/edit.svg') no-repeat;
 }

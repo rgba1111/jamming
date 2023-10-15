@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './App.css';
 import SearchBar from './../SearchBar/SearchBar';
 import SearchResults from './../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
@@ -104,7 +105,12 @@ export default function App() {
 
   return (
     <div className="App">
-      
+      <div className="header">
+        <h1>jammming</h1>
+      </div>
+      <div className="intro">
+        <p>Search for your favorite songs, add them to a playlist and save the playlist to your Spotify account.</p>
+      </div>
       <SearchBar onSearch={onSearch} />
       <SearchResults results={results} onAddTrack={onAddTrack} />
       <Playlist playlist={playlist} onRemoveTrack={onRemoveTrack} onNameChange={onUpdatePlaylistName} name={name} onSavePlaylist={onSavePlaylist} />

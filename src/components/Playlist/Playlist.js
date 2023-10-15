@@ -1,4 +1,5 @@
 import React from "react"; // Importing the React library
+import "./Playlist.css"; // Importing the Playlist component's styling
 import TrackList from "../TrackList/TrackList"; // Importing the TrackList component
 
 export default function Playlist(props) { // Defining a functional component called Playlist
@@ -10,9 +11,14 @@ export default function Playlist(props) { // Defining a functional component cal
     }
 
     return (
-        <div className="Playlist"> {/* Defining a div with a class name of "Playlist" */}
-            <input placeholder={name} onChange={handleNameChange} /> {/* Adding an input field with a default value of "New Playlist" */}
-            <button className="Playlist-save" onClick={onSavePlaylist}>Save to Spotify</button> {/* Adding a button with the text "Save to Spotify" */}
+        <div className="playlist"> {/* Defining a div with a class name of "Playlist" */}
+            <div className="playlistInput">
+                <div className="Label">
+                    <div className="Icon" id="editIcon"></div>
+                    <input className="playlistName" placeholder={name} onChange={handleNameChange} />
+                </div>
+                <button onClick={onSavePlaylist}>Save Playlist</button>
+            </div>
             <TrackList tracks={playlist} onRemoveTrack={onRemoveTrack} isRemoval={true} /> {/* Rendering the TrackList component with the playlist, onRemoveTrack, and isRemoval props */}
         </div>
     );

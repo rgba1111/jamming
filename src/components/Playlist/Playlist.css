@@ -1,0 +1,19 @@
+.playlistInput {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .5rem;
+    border-top: 1px solid var(--accent);
+    margin-top: 1rem;
+    padding-top: 1rem;
+}
+
+.playlistName {
+    background-color: transparent;
+    border: 0;
+    color: var(--secondaryText);
+    font-size: 1.125rem;
+    font-weight: 600;
+    padding: 0.5rem 0.5rem 0.5rem 0;
+}
+
