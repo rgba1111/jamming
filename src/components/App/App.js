@@ -1,39 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchBar from './../SearchBar/SearchBar';
 import SearchResults from './../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
+import { search, getAccessToken, savePlaylist } from '../../util/Spotify';
 
 /**
- * Renders the main App component.
- * @returns {JSX.Element} The App component JSX.
+ * The main component of the Jamming app.
+ * @returns {JSX.Element} The App component JSX element.
  */
 export default function App() {
-  const [results, setResults] = useState([
-    {
-      name: "example name",
-      artist: "example artist",
-      album: "example album",
-      id: 1
-    },
-    {
-      name: "example name 2",
-      artist: "example artist 2",
-      album: "example album",
-      id: 2
-    }
-  ]);
-
+  const [results, setResults] = useState([]);
   const [playlist, setPlaylist] = useState([]);
   const [addedTrackIds, setAddedTrackIds] = useState([]);
+  const [name, setName] = useState('Your Playlist');
+  const [accessToken, setAccessToken] = useState('');
 
   /**
-   * Adds a track to the playlist if it's not already added.
-   * @param {Object} track - The track to add to the playlist.
+   * Adds a track to the playlist and updates the addedTrackIds state.
+   * @param {Object} track - The track to be added to the playlist.
    */
   const onAddTrack = (track) => {
-    // Check if the track is already in the playlist by its ID
     if (!addedTrackIds.includes(track.id)) {
-      // Add the track to the playlist and update addedTrackIds
       setPlaylist(prevPlaylist => [...prevPlaylist, track]);
       setAddedTrackIds(prevIds => [...prevIds, track.id]);
     } else {
@@ -42,13 +29,11 @@ export default function App() {
   };
 
   /**
-   * Removes a track from the playlist if it's in the playlist.
-   * @param {Object} track - The track to remove from the playlist.
+   * Removes a track from the playlist and updates the addedTrackIds state.
+   * @param {Object} track - The track to be removed from the playlist.
    */
   const onRemoveTrack = (track) => {
-    // Check if the track is in the playlist by its ID
     if (addedTrackIds.includes(track.id)) {
-      // Remove the track from the playlist and update addedTrackIds
       setPlaylist(prevPlaylist => prevPlaylist.filter(item => item.id !== track.id));
       setAddedTrackIds(prevIds => prevIds.filter(id => id !== track.id));
     } else {
@@ -56,11 +41,72 @@ export default function App() {
     }
   };
 
+  /**
+   * Updates the name state of the playlist.
+   * @param {string} name - The new name for the playlist.
+   */
+  const onUpdatePlaylistName = (name) => {
+    if (name.length < 1) {
+      setName('Your Playlist');
+    } else {
+      setName(name);
+    }
+  };
+
+  useEffect(() => {
+    /**
+     * Fetches the access token and updates the accessToken state.
+     */
+    const fetchData = async () => {
+      try {
+        const token = await getAccessToken();
+        setAccessToken(token);
+      } catch (error) {
+        console.error('Error retrieving access token:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  /**
+   * Searches for tracks using the Spotify API and updates the results state.
+   * @param {string} term - The search term.
+   */
+  const onSearch = (term) => {
+    if (!accessToken || term.length < 1) {
+      console.log('Access token not available or Search term is empty');
+      return;
+    }
+
+    search(term, accessToken)
+      .then((results) => {
+        setResults(results);
+      })
+      .catch((error) => {
+        console.error('Error during search:', error);
+      });
+  };
+
+  /**
+   * Saves the playlist to the user's Spotify account.
+   */
+  const onSavePlaylist = () => {
+    const trackURIs = playlist.map(track => `spotify:track:${track.id}`);
+    console.log(trackURIs);
+
+    savePlaylist(name, trackURIs).then(() => {
+      setPlaylist([]);
+      setAddedTrackIds([]);
+      setName('Your Playlist');
+    });
+  };
+
   return (
     <div className="App">
-      <SearchBar />
+      <SearchBar onSearch={onSearch} />
       <SearchResults results={results} onAddTrack={onAddTrack} />
-      <Playlist playlist={playlist} onRemoveTrack={onRemoveTrack} />
+      <Playlist playlist={playlist} onRemoveTrack={onRemoveTrack} onNameChange={onUpdatePlaylistName} name={name} onSavePlaylist={onSavePlaylist} />
     </div>
   );
 }
