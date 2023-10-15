@@ -104,6 +104,7 @@ export default function App() {
 
   return (
     <div className="App">
+      
       <SearchBar onSearch={onSearch} />
       <SearchResults results={results} onAddTrack={onAddTrack} />
       <Playlist playlist={playlist} onRemoveTrack={onRemoveTrack} onNameChange={onUpdatePlaylistName} name={name} onSavePlaylist={onSavePlaylist} />

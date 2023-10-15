@@ -14,7 +14,6 @@ export default function SearchResults(props) {
 
   return (
     <div>
-      <h1>Search Results</h1>
       <TrackList tracks={results} onAddTrack={onAddTrack} />
     </div>
   );
