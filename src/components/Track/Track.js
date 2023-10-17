@@ -16,18 +16,17 @@ export default function Track(props) {
   const { track, onAddTrack, onRemoveTrack, isRemoval } = props;
 
   return (
-    <div className="Track">
-      <div className="Track-information">
-        <h3>{track.name}</h3>
-        <p>{track.album} | {track.artist}</p>
-        <p>ID: {track.id}</p>
+    <div className="track">
+      <div className="trackInformation">
+        <h3 className="trackName">{track.name}</h3>
+        <p className="trackArtist">{track.album} · {track.artist}</p>
       </div>
       {isRemoval ? (
         // Display remove button if isRemoval is true
-        <button className="Track-action" onClick={() => onRemoveTrack(track)}>-</button>
+        <button className="trackAction" onClick={() => onRemoveTrack(track)}><div className="Icon" id="minusIcon"></div></button>
       ) : (
         // Display add button if isRemoval is false
-        <button className="Track-action" onClick={() => onAddTrack(track)}>+</button>
+        <button className="trackAction" onClick={() => onAddTrack(track)}><div className="Icon" id="plusIcon"></div></button>
       )}
     </div>
   );

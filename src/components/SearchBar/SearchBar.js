@@ -22,12 +22,12 @@ export default function SearchBar(props) {
       <form onSubmit={handleSubmit}>
         <input
           className="SearchBar"
-          placeholder="Enter A Song, Album, or Artist"
+          placeholder="Enter a Song, Album, or Artist"
           type="text"
           value={term}
           onChange={(e) => setTerm(e.target.value)} // Update the search term state
         />
-        <button className="SearchButton" type="submit">
+        <button className="cta" type="submit">
           Search Songs
         </button>
       </form>

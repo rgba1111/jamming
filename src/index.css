@@ -31,6 +31,7 @@
     --accent: rgba(198, 197, 202, 0.5);
     --primaryText: var(--black);
     --secondaryText: var(--gray90);
+    --overlay: rgba(0, 0, 0, 0.05);
   }
 
   button{
@@ -64,6 +65,7 @@
     --secondaryText: var(--gray10);
     --input: var(--gray10);
     --input: #333941;
+    --overlay: rgba(0, 0, 0, 0.15);
   }
 
   button{
@@ -112,7 +114,7 @@ p{
 }
 
 input{
-  font-size: 0.9rem;
+  font-size: 1rem;
   padding: 0.5rem;
   border-radius: 0.4rem;
   flex: 1 0 0;
@@ -134,9 +136,11 @@ button{
   border-radius: 0.4rem;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
-  min-width: 8.2rem;
   text-align: center;
+}
 
+.cta{
+  min-width: 8.2rem;
 }
 
 form{
@@ -162,10 +166,44 @@ form{
   margin: 1rem 0 1rem 0;
 }
 
+.placeholder{
+  box-sizing: border-box;
+  border: 1px solid var(--input);
+  min-height: 80.438px;
+  text-align: center;
+  border-radius: 0.4rem;
+}
+
+.placeholder p{
+  color: var(--secondaryText);
+  opacity: .35;
+  font-size: .8rem;
+  line-height: 80.438px;
+}
+
 #searchIcon {
   background: url('./icons/search.svg') no-repeat;
 }
 
 #editIcon {
   background: url('./icons/edit.svg') no-repeat;
+}
+
+#playIcon {
+  background: url('./icons/play.svg') no-repeat;
+}
+
+#playIcon {
+  background: url('./icons/play.svg') no-repeat;
+}
+
+#heartIcon {
+  background: url('./icons/play.svg') no-repeat;
+}
+
+#plusIcon {
+  background: url('./icons/plus.svg') no-repeat;
+}
+#minusIcon {
+  background: url('./icons/minus.svg') no-repeat;
 }

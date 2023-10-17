@@ -1,23 +1,31 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Track from "../Track/Track";
+import "./TrackList.css";
 
-/**
- * Renders a list of tracks with add/remove functionality.
- * @param {Object} props - The props object.
- * @param {Array} props.tracks - The list of tracks to render.
- * @param {Function} props.onAddTrack - The function to call when a track is added.
- * @param {Function} props.onRemoveTrack - The function to call when a track is removed.
- * @param {boolean} props.isRemoval - Whether or not the component is in removal mode.
- * @returns {JSX.Element} - The rendered TrackList component.
- */
 export default function TrackList(props) {
   const { tracks, onAddTrack, onRemoveTrack, isRemoval } = props;
+  const trackListRef = useRef(null);
 
   return (
-    <div className="TrackList">
-      {tracks.map(track => (
-        <Track key={track.id} track={track} onAddTrack={onAddTrack} onRemoveTrack={onRemoveTrack} isRemoval={isRemoval} />
-      ))}
-    </div>
+    <>
+      {tracks.length > 0 ? (
+        <div className="TrackList" ref={trackListRef}>
+          {tracks.map((track) => (
+            <Track
+              key={track.id}
+              track={track}
+              onAddTrack={onAddTrack}
+              onRemoveTrack={onRemoveTrack}
+              isRemoval={isRemoval}
+            />
+          ))
+          }
+        </div>
+      ) : (
+        <div className="placeholder">
+          <p>Your Songs :)</p>
+        </div>
+      )}
+    </>
   );
 }

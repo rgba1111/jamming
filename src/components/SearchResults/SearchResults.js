@@ -9,12 +9,20 @@ import TrackList from "../TrackList/TrackList";
  * @returns {JSX.Element} - The JSX element to render.
  */
 export default function SearchResults(props) {
-  
+
   const { results, onAddTrack } = props;
 
   return (
-    <div>
-      <TrackList tracks={results} onAddTrack={onAddTrack} />
-    </div>
+    <>
+      {results.length > 1 ? (
+        <div>
+          <TrackList tracks={results} onAddTrack={onAddTrack} />
+        </div>
+      ) : (
+        <div className="placeholder">
+            <p>Search Results</p>
+        </div>
+      )}
+    </>
   );
 }

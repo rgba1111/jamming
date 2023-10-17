@@ -13,7 +13,7 @@ export default function App() {
   const [results, setResults] = useState([]);
   const [playlist, setPlaylist] = useState([]);
   const [addedTrackIds, setAddedTrackIds] = useState([]);
-  const [name, setName] = useState('Your Playlist');
+  const [name, setName] = useState('Name your playlist');
   const [accessToken, setAccessToken] = useState('');
 
   /**
@@ -48,7 +48,7 @@ export default function App() {
    */
   const onUpdatePlaylistName = (name) => {
     if (name.length < 1) {
-      setName('Your Playlist');
+      setName('Name your playlist');
     } else {
       setName(name);
     }
@@ -99,9 +99,13 @@ export default function App() {
     savePlaylist(name, trackURIs).then(() => {
       setPlaylist([]);
       setAddedTrackIds([]);
-      setName('Your Playlist');
+      setName('Name your playlist');
     });
   };
+
+
+
+
 
   return (
     <div className="App">

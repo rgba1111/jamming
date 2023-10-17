@@ -1,0 +1,34 @@
+.track{
+    display: flex;
+    direction: column;
+    align-items: center;
+    border-radius: .25rem;
+    padding: .75rem;
+}
+
+.track:hover{
+    background-color: var(--overlay);
+}
+
+.trackAction{
+    width: 2rem;
+    height: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.trackInformation{
+    flex-grow: 1;
+}
+
+.trackName{
+    color: var(--primaryText);
+    font-size: 1rem;
+    font-weight: 500;
+    padding-bottom: .25rem;
+}
+
+.trackArtist{
+    color: var(--secondaryText);
+    font-size: .9rem;
+}

@@ -1,0 +1,10 @@
+.TrackList {
+    display: flex;
+    flex-direction: column;
+    padding: .5rem;
+    border: 1px solid var(--accent);
+    border-radius: 0.4rem;
+    background-color: var(--input);
+    min-height: 63.438px;
+    height: min-content;
+}
