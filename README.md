@@ -1,4 +1,4 @@
-# Jamming
+# jammming
 
 A small react web app that can search the Spotify API, add songs to playlists and save them your profile.
 
