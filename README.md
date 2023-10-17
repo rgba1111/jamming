@@ -21,6 +21,7 @@ A small react web app that can search the Spotify API, add songs to playlists an
 ## Attributions
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 Using [Icon set 500+](https://www.figma.com/community/file/889189935061170195/icon-set-500-updated).
 
 
