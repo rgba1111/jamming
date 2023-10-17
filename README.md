@@ -2,9 +2,6 @@
 
 A small react web app that can search the Spotify API, add songs to playlists and save them your profile.
 
-test
-
-
 ## Project Requirements
 
 * Build a web app using React
