@@ -16,7 +16,7 @@ export default function SearchBar(props) {
   return (
     <>
       <div className="Label">
-        <div className="Icon" id="searchIcon"></div>
+        <div className="staticIcon" id="searchIcon"></div>
         <h2>Find songs</h2>
       </div>
       <form onSubmit={handleSubmit}>
@@ -27,11 +27,14 @@ export default function SearchBar(props) {
           value={term}
           onChange={(e) => setTerm(e.target.value)} // Update the search term state
         />
-        <button className="cta" type="submit">
-          Search Songs
-        </button>
+        {term.length > 0 ? (
+        <div>
+           <button className="cta" type="submit">Search Songs</button>
+        </div>
+      ) : (
+        <button disabled className="cta" type="submit">Search Songs</button>
+      )}
       </form>
-      <br></br>
     </>
   );
 }

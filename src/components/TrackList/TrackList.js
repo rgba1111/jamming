@@ -23,7 +23,7 @@ export default function TrackList(props) {
         </div>
       ) : (
         <div className="placeholder">
-          <p>Your Songs :)</p>
+          <p>Add Songs ☺</p>
         </div>
       )}
     </>

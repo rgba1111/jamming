@@ -13,75 +13,13 @@
 :root {
   --white: #fff;
   --black: #000;
+  --gray02: #fcfcfc;
+  --gray05: #f6f8f8;
   --gray10: #F2F4F5;
   --gray20: #DEE0E1;
   --gray30: #C0C2C3;
   --gray50: #2E333A;
   --gray90: #1D2229;
-}
-
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --primaryHighlight: var(--gray50);
-    --secondaryHighlight: var(--gray90);
-    --tertiaryHighlight: var(--black);
-    --background: var(--gray10);
-    --foreground: var(--white);
-    --accent: rgba(198, 197, 202, 0.5);
-    --primaryText: var(--black);
-    --secondaryText: var(--gray90);
-    --overlay: rgba(0, 0, 0, 0.05);
-  }
-
-  button{
-    border: 1px solid var(--primaryHighlight);
-    background-color: var(--primaryHighlight);
-    color: var(--white);
-  }
-
-  button:hover{
-    background-color: var(--tertiaryHighlight);
-    border-color: var(--secondaryHighlight);
-    color: var(--gray10);
-  }
-
-  button:active{
-    background-color: var(--secondaryHighlight);
-    border-color: var(--primaryHighlight);
-  }
-
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primaryHighlight: var(--white);
-    --secondaryHighlight: var(--white);
-    --tertiaryHighlight: var(--gray10);
-    --background: var(--gray90);
-    --foreground: var(--gray50);
-    --accent: rgba(61, 60, 66, 0.5);
-    --primaryText: var(--white);
-    --secondaryText: var(--gray10);
-    --input: var(--gray10);
-    --input: #333941;
-    --overlay: rgba(0, 0, 0, 0.15);
-  }
-
-  button{
-    border: 1px solid var(--gray10);
-    background-color: var(--primaryHighlight);
-    color: var(--black);
-  }
-  button:hover{
-    background-color: var(--gray20);
-    color: var(--black);
-  }
-
-  button:active{
-    background-color: var(--gray30);
-  }
-  
 }
 
 
@@ -118,7 +56,7 @@ input{
   padding: 0.5rem;
   border-radius: 0.4rem;
   flex: 1 0 0;
-  border: 1px solid var(--accent);
+  border: 1px solid var(--input);
   background-color: var(--input);
   color: var(--primaryText);
   transition: all 0.2s ease-in-out;
@@ -139,6 +77,13 @@ button{
   text-align: center;
 }
 
+button:disabled{
+  opacity: .6;
+  cursor: not-allowed;
+  transition: all 2s ease-in-out;
+}
+
+
 .cta{
   min-width: 8.2rem;
 }
@@ -148,6 +93,7 @@ form{
   flex-direction: row;
   align-items: center;
   gap: .5rem;
+  margin-bottom: 1rem;
 }
 
 .Icon {
@@ -155,6 +101,21 @@ form{
   height: 1.125rem;
   background-size: cover; 
   background-position: center center; 
+  transition: all 0.4s ease-in-out;
+}
+
+
+.staticIcon {
+  width: 1.125rem;
+  height: 1.125rem;
+  background-size: cover; 
+  background-position: center center; 
+  transition: all 0.4s ease-in-out;
+}
+
+.staticIcon:hover {
+  cursor: default;
+  filter: contrast(2);
 }
 
 .Label{
@@ -189,16 +150,16 @@ form{
   background: url('./icons/edit.svg') no-repeat;
 }
 
-#playIcon {
-  background: url('./icons/play.svg') no-repeat;
-}
 
 #playIcon {
   background: url('./icons/play.svg') no-repeat;
 }
 
-#heartIcon {
-  background: url('./icons/play.svg') no-repeat;
+#heartIconOutline {
+  background: url('./icons/heart-outline.svg') no-repeat;
+}
+#heartIconFilled {
+  background: url('./icons/heart-filled.svg') no-repeat;
 }
 
 #plusIcon {
@@ -206,4 +167,97 @@ form{
 }
 #minusIcon {
   background: url('./icons/minus.svg') no-repeat;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --primaryHighlight: var(--gray50);
+    --secondaryHighlight: var(--gray90);
+    --tertiaryHighlight: var(--black);
+    --background: var(--gray10);
+    --foreground: var(--white);
+    --accent: rgba(198, 197, 202, 0.5);
+    --primaryText: var(--black);
+    --secondaryText: var(--gray90);
+    --overlay: rgba(0, 0, 0, 0.05);
+    --input: var(--gray02);
+    --input-hover: rgba(0, 0, 0, 0.05);
+  }
+
+  .placeholder{
+    border: 1px solid var(--overlay);
+  }
+
+  button{
+    border: 1px solid var(--primaryHighlight);
+    background-color: var(--primaryHighlight);
+    color: var(--white);
+  }
+
+  button:hover{
+    background-color: var(--tertiaryHighlight);
+    border-color: var(--secondaryHighlight);
+    color: var(--gray10);
+  }
+
+  button:disabled:hover{
+    border: 1px solid var(--primaryHighlight);
+    background-color: var(--primaryHighlight);
+    color: var(--white);
+  }
+  
+
+  button:active{
+    background-color: var(--secondaryHighlight);
+    border-color: var(--primaryHighlight);
+  }
+
+  input:hover{
+    background-color: var(--input-hover);
+  }
+
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primaryHighlight: var(--white);
+    --secondaryHighlight: var(--white);
+    --tertiaryHighlight: var(--gray10);
+    --background: var(--gray90);
+    --foreground: var(--gray50);
+    --accent: rgba(61, 60, 66, 0.5);
+    --primaryText: var(--white);
+    --secondaryText: var(--gray10);
+    --input: rgba(0, 0, 0, 0.15);
+    --input-hover: rgba(0, 0, 0, 0.25);
+    --overlay: rgba(0, 0, 0, 0.15);
+  }
+
+  .placeholder{
+    border-color: var(--overlay);
+  }
+  button{
+    border: 1px solid var(--gray10);
+    background-color: var(--primaryHighlight);
+    color: var(--black);
+  }
+  button:hover{
+    background-color: var(--gray20);
+    color: var(--black);
+  }
+
+  button:disabled:hover{
+    border: 1px solid var(--gray10);
+    background-color: var(--primaryHighlight);
+    color: var(--black);
+  }
+
+  button:active{
+    background-color: var(--gray30);
+  }
+
+  input:hover{
+    background-color: var(--input-hover);
+  }
+  
 }

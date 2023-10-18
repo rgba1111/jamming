@@ -20,7 +20,7 @@ export default function SearchResults(props) {
         </div>
       ) : (
         <div className="placeholder">
-            <p>Search Results</p>
+            <p>Search for anything</p>
         </div>
       )}
     </>

@@ -12,8 +12,9 @@ import { search, getAccessToken, savePlaylist } from '../../util/Spotify';
 export default function App() {
   const [results, setResults] = useState([]);
   const [playlist, setPlaylist] = useState([]);
+  const [term, setTerm] = useState('');
   const [addedTrackIds, setAddedTrackIds] = useState([]);
-  const [name, setName] = useState('Name your playlist');
+  const [name, setName] = useState('My playlist');
   const [accessToken, setAccessToken] = useState('');
 
   /**
@@ -48,9 +49,10 @@ export default function App() {
    */
   const onUpdatePlaylistName = (name) => {
     if (name.length < 1) {
-      setName('Name your playlist');
+      setName('My playlist');
     } else {
       setName(name);
+
     }
   };
 
@@ -100,24 +102,23 @@ export default function App() {
       setPlaylist([]);
       setAddedTrackIds([]);
       setName('Name your playlist');
+      setResults([]);
+      alert('Playlist saved to your account!')
     });
   };
-
-
-
-
-
   return (
     <div className="App">
       <div className="header">
         <h1>jammming</h1>
       </div>
       <div className="intro">
-        <p>Search for your favorite songs, add them to a playlist and save the playlist to your Spotify account.</p>
+        <p>Find your favorite songs, add them to a playlist <br></br>and save the playlist to your Spotify account.</p>
       </div>
-      <SearchBar onSearch={onSearch} />
-      <SearchResults results={results} onAddTrack={onAddTrack} />
-      <Playlist playlist={playlist} onRemoveTrack={onRemoveTrack} onNameChange={onUpdatePlaylistName} name={name} onSavePlaylist={onSavePlaylist} />
+      <div className="wrap">
+        <SearchBar onSearch={onSearch} />
+        <SearchResults results={results} onAddTrack={onAddTrack} />
+        <Playlist playlist={playlist} onRemoveTrack={onRemoveTrack} onNameChange={onUpdatePlaylistName} name={name} onSavePlaylist={onSavePlaylist} />
+      </div>
     </div>
   );
 }

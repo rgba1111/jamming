@@ -4,15 +4,16 @@
 }
 
 .App {
-  margin: 2rem auto;
+  margin: 2rem auto 0 auto;
   max-width: 36rem;
-  padding: 1.5rem;
-  border-radius: 1rem;
+  padding: 1rem 1.5rem 8rem 1.5rem;
+  border-radius: 1rem 1rem 0 0;
+  min-height: 100vh;
   border: 1px solid var(--accent);
   background-color: var(--foreground);
 }
 
 .intro{
-  text-align: left;
+  text-align: center;
   margin: 2rem 0 3rem 0;
 }

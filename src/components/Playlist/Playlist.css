@@ -1,18 +1,72 @@
-.playlistInput {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: .5rem;
-    border-top: 1px solid var(--accent);
+.playlist {
     margin-top: 1rem;
     padding-top: 1rem;
 }
 
+.playlistInput {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    align-items: center;
+    gap: .5rem;
+    margin: 0;
+    width: 100%;
+}
+
 .playlistName {
+    width: 100%;
     background-color: transparent;
     border: 0;
-    color: var(--secondaryText);
+    border-radius: 0;
+    border-bottom: 1px solid var(--input);
+    margin-right: .5rem;
     font-size: 1.125rem;
     font-weight: 600;
     padding: 0.5rem 0.5rem 0.5rem 0;
+    transition: all 0.2s ease-in-out;
+}
+
+.playlistName::placeholder {
+    opacity: .45;
+    color: var(--primaryText);
+    transition: all 0.2s ease-in-out;
+}
+
+.playlistName::-webkit-input-placeholder {
+    color: var(--primaryText);
+}
+
+.playlistName:hover {
+    border-bottom: 1px solid var(--input);
+    background-color: transparent;
+}
+
+.playlistName:hover::placeholder {
+    opacity: .8;
+}
+
+.playlistName:focus {
+    border-bottom: 1px solid var(--primaryText);
+    background-color: transparent;
+}
+
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.4);
+        rotate: -5deg;
+        opacity: 0.7;
+        filter: contrast(2);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+#heartIconFilled {
+    animation: heartbeat 1s ease-in-out 2;
 }

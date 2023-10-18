@@ -11,15 +11,26 @@ export default function Playlist(props) { // Defining a functional component cal
     }
 
     return (
-        <div className="playlist"> 
-            <div className="playlistInput">
-                <div className="Label">
-                    <div className="Icon" id="heartIcon"></div>
-                    <input className="playlistName" placeholder={name} onChange={handleNameChange} />
+        <>
+            <div className="playlist">
+                <div className="playlistInput">
+                    <div className="Label">
+                        {playlist.length > 0 ? (
+                            <div className="staticIcon" id="heartIconFilled"></div>
+                        ) : (
+                            <div className="staticIcon" id="heartIconOutline"></div>
+                        )}
+                        <input className="playlistName" placeholder={name} onChange={handleNameChange} />
+                    </div>
+                    {playlist.length > 0 ? (
+                            <button className="cta" onClick={onSavePlaylist}>Save Playlist</button>
+                        ) : (
+                            <button disabled className="cta" onClick={onSavePlaylist}>Save Playlist</button>
+                        )}
                 </div>
-                <button className="cta" onClick={onSavePlaylist}>Save Playlist</button>
+                <TrackList tracks={playlist} onRemoveTrack={onRemoveTrack} isRemoval={true} />
             </div>
-            <TrackList tracks={playlist} onRemoveTrack={onRemoveTrack} isRemoval={true} />
-        </div>
+        </>
+
     );
 }
