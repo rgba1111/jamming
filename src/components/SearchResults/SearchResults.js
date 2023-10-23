@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import TrackList from "../TrackList/TrackList";
 
 /**
@@ -10,7 +10,7 @@ import TrackList from "../TrackList/TrackList";
  */
 export default function SearchResults(props) {
 
-  const { results, onAddTrack } = props;
+  const { results, onAddTrack, placeholder } = props;
 
   return (
     <>
@@ -20,7 +20,7 @@ export default function SearchResults(props) {
         </div>
       ) : (
         <div className="placeholder">
-            <p>Search for anything</p>
+            <p>{placeholder}</p>
         </div>
       )}
     </>

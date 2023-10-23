@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef} from 'react';
 import './App.css';
 import SearchBar from './../SearchBar/SearchBar';
 import SearchResults from './../SearchResults/SearchResults';
@@ -12,10 +12,12 @@ import { search, getAccessToken, savePlaylist } from '../../util/Spotify';
 export default function App() {
   const [results, setResults] = useState([]);
   const [playlist, setPlaylist] = useState([]);
-  const [term, setTerm] = useState('');
   const [addedTrackIds, setAddedTrackIds] = useState([]);
   const [name, setName] = useState('My playlist');
   const [accessToken, setAccessToken] = useState('');
+  const [changedName, setChangedName] = useState(false);
+  const nameInputRef = useRef(null);
+  const [placeholder, setPlaceholder] = useState('Search for anything');
 
   /**
    * Adds a track to the playlist and updates the addedTrackIds state.
@@ -50,9 +52,11 @@ export default function App() {
   const onUpdatePlaylistName = (name) => {
     if (name.length < 1) {
       setName('My playlist');
+      setChangedName(false); 
+
     } else {
       setName(name);
-
+      setChangedName(true); 
     }
   };
 
@@ -77,37 +81,49 @@ export default function App() {
    * @param {string} term - The search term.
    */
   const onSearch = (term) => {
+
     if (!accessToken || term.length < 1) {
       console.log('Access token not available or Search term is empty');
       return;
     }
 
-    search(term, accessToken)
+    search(term, accessToken) 
       .then((results) => {
-        setResults(results);
+        if (results.length < 1) {
+          setPlaceholder('No results. Try another search term!');
+          return;
+        } else {
+          setResults(results);
+        }
       })
       .catch((error) => {
         console.error('Error during search:', error);
       });
   };
 
-  /**
-   * Saves the playlist to the user's Spotify account.
-   */
+  const onClearSearch = () => {
+    setResults([]);
+  }
+
   const onSavePlaylist = () => {
     const trackURIs = playlist.map(track => `spotify:track:${track.id}`);
     console.log(trackURIs);
-
     savePlaylist(name, trackURIs).then(() => {
       setPlaylist([]);
       setAddedTrackIds([]);
-      setName('Name your playlist');
-      setResults([]);
-      alert('Playlist saved to your account!')
+      setName('Name your playlist'); // Resetting the name state
+      setChangedName(false); // Resetting the changedName state to false
+      // setResults([]);
+      alert(`${name} saved to your account!`);
+      nameInputRef.current.value = '';
     });
   };
+  
+
+
   return (
-    <div className="App">
+    <>
+      <div className="App">
       <div className="header">
         <h1>jammming</h1>
       </div>
@@ -115,10 +131,11 @@ export default function App() {
         <p>Find your favorite songs, add them to a playlist <br></br>and save the playlist to your Spotify account.</p>
       </div>
       <div className="wrap">
-        <SearchBar onSearch={onSearch} />
-        <SearchResults results={results} onAddTrack={onAddTrack} />
-        <Playlist playlist={playlist} onRemoveTrack={onRemoveTrack} onNameChange={onUpdatePlaylistName} name={name} onSavePlaylist={onSavePlaylist} />
+        <SearchBar onSearch={onSearch} inputRef={nameInputRef} onClearSearch={onClearSearch} setPlaceholder={setPlaceholder}/>
+        <SearchResults results={results} onAddTrack={onAddTrack} placeholder={placeholder}/>
+        <Playlist playlist={playlist} onRemoveTrack={onRemoveTrack} onNameChange={onUpdatePlaylistName} name={name} onSavePlaylist={onSavePlaylist} changedName={changedName} inputRef={nameInputRef}/>
       </div>
     </div>
+    </>
   );
 }

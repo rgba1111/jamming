@@ -30,7 +30,7 @@
 }
 
 .trackAction:active{
-    filter: contrast(2);
+    filter: contrast(0);
     background-color: rgba(0, 0, 0, 0.2);
 }
 
@@ -41,8 +41,11 @@
 }
 
 .trackInformation{
+    display: flex;
+    flex-direction: row;
     flex-grow: 1;
 }
+
 
 .trackName{
     color: var(--primaryText);

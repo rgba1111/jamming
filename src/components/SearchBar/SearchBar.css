@@ -1,0 +1,48 @@
+.searchInput{
+    width: 100%;
+    display: flex;
+
+    align-items: center;
+}
+
+.searchBar{
+    width: 100%;
+}
+
+.resetButton{
+    border-radius: 0.3rem;
+    width: 2.3rem;
+    height: 2.3rem;
+    background-color: transparent;
+    border: none;
+    color: var(--primaryText);
+    font-size: 1rem;
+    font-weight: 500;
+    margin-left: -2.3rem;
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+    filter: contrast(0);
+  }
+  .resetButton:hover{
+    background-color: var(--input-top);
+    filter: contrast(.5);
+  }
+  
+  .resetButton:active{
+    background-color: var(--input-top);
+    filter: contrast(0);
+  }
+  
+  .activeIcon {
+    margin: 0 auto;
+    width: 1.125rem;
+    height: 1.125rem;
+    background-size: cover; 
+    background-position: center; 
+    transition: all 0.4s ease-in-out;
+  }
+  
+  .activeIcon:hover {
+    filter: contrast(2);
+  }
+
