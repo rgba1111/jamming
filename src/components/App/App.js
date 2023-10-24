@@ -18,6 +18,7 @@ export default function App() {
   const [changedName, setChangedName] = useState(false);
   const nameInputRef = useRef(null);
   const [placeholder, setPlaceholder] = useState('Search for anything');
+  const [isFlex, setIsFlex] = useState('');
 
   /**
    * Adds a track to the playlist and updates the addedTrackIds state.
@@ -103,6 +104,7 @@ export default function App() {
 
   const onClearSearch = () => {
     setResults([]);
+    setIsFlex('flexPlaceholder');
   }
 
   const onSavePlaylist = () => {
@@ -132,7 +134,7 @@ export default function App() {
       </div>
       <div className="wrap">
         <SearchBar onSearch={onSearch} inputRef={nameInputRef} onClearSearch={onClearSearch} setPlaceholder={setPlaceholder}/>
-        <SearchResults results={results} onAddTrack={onAddTrack} placeholder={placeholder}/>
+        <SearchResults results={results} onAddTrack={onAddTrack} placeholder={placeholder} isFlex={isFlex}/>
         <Playlist playlist={playlist} onRemoveTrack={onRemoveTrack} onNameChange={onUpdatePlaylistName} name={name} onSavePlaylist={onSavePlaylist} changedName={changedName} inputRef={nameInputRef}/>
       </div>
     </div>

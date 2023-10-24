@@ -16,6 +16,12 @@ export default function SearchBar(props) {
     onSearch(term);
   };
 
+  const handleChange = (e) => {
+    setTerm(e.target.value);
+
+  }
+
+
   return (
     <>
       <div className="Label">
@@ -30,7 +36,8 @@ export default function SearchBar(props) {
             type="text"
             value={term}
             ref={inputRef}
-            onChange={(e) => setTerm(e.target.value)}
+            onChange={handleChange}
+            // onChange={(e) => setTerm(e.target.value)}
           />
           {term.length > 0 ? (
             <button className="resetButton" onClick={clearSearch} type="reset">

@@ -10,8 +10,7 @@ import TrackList from "../TrackList/TrackList";
  */
 export default function SearchResults(props) {
 
-  const { results, onAddTrack, placeholder } = props;
-
+  const { results, onAddTrack, placeholder, isFlex } = props;
   return (
     <>
       {results.length > 1 ? (
@@ -19,7 +18,7 @@ export default function SearchResults(props) {
           <TrackList tracks={results} onAddTrack={onAddTrack} />
         </div>
       ) : (
-        <div className="placeholder">
+        <div className="placeholder" id={isFlex}>
             <p>{placeholder}</p>
         </div>
       )}

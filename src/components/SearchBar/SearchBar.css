@@ -19,18 +19,18 @@
     font-size: 1rem;
     font-weight: 500;
     margin-left: -2.3rem;
-    transition: all 0.2s ease-in-out;
     text-align: center;
     filter: contrast(0);
+    transition: all 0.2s ease-in-out;
   }
   .resetButton:hover{
-    background-color: var(--input-top);
-    filter: contrast(.5);
+    filter: contrast(1);
+    background-color: transparent;
   }
   
   .resetButton:active{
-    background-color: var(--input-top);
-    filter: contrast(0);
+    background-color: transparent;
+    filter: contrast(2);
   }
   
   .activeIcon {

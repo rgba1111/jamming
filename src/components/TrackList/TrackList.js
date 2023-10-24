@@ -3,7 +3,7 @@ import Track from "../Track/Track";
 import "./TrackList.css";
 
 export default function TrackList(props) {
-  const { tracks, onAddTrack, onRemoveTrack, isRemoval } = props;
+  const { tracks, onAddTrack, onRemoveTrack, isRemoval, isPlaylistTrack } = props;
   const trackListRef = useRef(null);
 
   return (
@@ -11,13 +11,15 @@ export default function TrackList(props) {
       {tracks.length > 0 ? (
         <div className="TrackList" ref={trackListRef}>
           {tracks.map((track) => (
-            <Track
-              key={track.id}
-              track={track}
-              onAddTrack={onAddTrack}
-              onRemoveTrack={onRemoveTrack}
-              isRemoval={isRemoval}
-            />
+            <div className={isPlaylistTrack}>
+              <Track
+                key={track.id}
+                track={track}
+                onAddTrack={onAddTrack}
+                onRemoveTrack={onRemoveTrack}
+                isRemoval={isRemoval}
+              />
+            </div>
           ))
           }
         </div>

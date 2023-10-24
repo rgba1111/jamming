@@ -6,5 +6,11 @@
     border-radius: 0.4rem;
     background-color: var(--input);
     min-height: 63.438px;
-    height: min-content;
+    overflow: hidden;
+    max-height: min-content;
+    animation: unfold 2s ease-out 1;
+}
+
+.searchResultList{
+    animation: unfold 2s ease-out 1;
 }

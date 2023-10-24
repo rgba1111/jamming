@@ -132,9 +132,11 @@ form{
 .placeholder{
   box-sizing: border-box;
   border: 1px solid var(--input);
-  min-height: 80.438px;
+  max-height: 80.438px;
+  height: 278.125px;
   text-align: center;
   border-radius: 0.4rem;
+  
 }
 
 .placeholder p{
@@ -144,6 +146,9 @@ form{
   line-height: 80.438px;
 }
 
+#flexPlaceholder{
+  animation: fold .4s ease-out 1;
+}
 #searchIcon {
   background: url('./icons/search.svg') no-repeat;
 }
@@ -269,4 +274,30 @@ form{
     background-color: var(--input-hover);
   }
   
+}
+
+@keyframes unfold {
+  0% {
+      max-height: 0;
+      opacity: 0;
+  }
+  40%{
+      opacity: 1;
+  }
+  100% {
+      max-height: 900px;
+  }
+}
+
+@keyframes fold {
+  0% {
+    max-height: 278.125px;
+    opacity: 0;
+  }
+  40%{
+      opacity: 1;
+  }
+  100%{
+    max-height: 80.438px;
+  }
 }

@@ -19,8 +19,10 @@ export default function Track(props) {
     <div className="track">
       <div className="trackInformation">
         <img className="trackImage" src={track.image} alt="album cover" />
-        <h3 className="trackName">{track.name}</h3>
-        <p className="trackArtist">{track.album} · {track.artist}</p>
+        <div className="trackInformationText">
+          <h3 className="trackName">{track.name}</h3>
+          <p className="trackArtist">{track.album} · {track.artist}</p>
+        </div>
       </div>
       {isRemoval ? (
         // Display remove button if isRemoval is true

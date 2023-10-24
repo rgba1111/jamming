@@ -27,7 +27,7 @@ export default function Playlist(props) { // Defining a functional component cal
                             <button disabled className="cta" onClick={onSavePlaylist}>Save Playlist</button>
                         )}
                 </div>
-                <TrackList tracks={playlist} onRemoveTrack={onRemoveTrack} isRemoval={true} />
+                <TrackList tracks={playlist} onRemoveTrack={onRemoveTrack} isRemoval={true} isPlaylistTrack={"playListTrack"}/>
             </div>
         </>
 
