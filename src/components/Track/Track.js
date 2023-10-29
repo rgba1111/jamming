@@ -21,7 +21,7 @@ export default function Track(props) {
         <img className="trackImage" src={track.image} alt="album cover" />
         <div className="trackInformationText">
           <h3 className="trackName">{track.name}</h3>
-          <p className="trackArtist">{track.album} · {track.artist}</p>
+          <p className="trackArtist">{track.artist} · {track.album}</p>
         </div>
       </div>
       {isRemoval ? (
@@ -34,5 +34,3 @@ export default function Track(props) {
     </div>
   );
 }
-
-

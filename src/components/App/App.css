@@ -6,11 +6,12 @@
 .App {
   margin: 2rem auto 0 auto;
   max-width: 36rem;
-  padding: 1rem 1.5rem 8rem 1.5rem;
-  border-radius: 1rem 1rem 0 0;
-  min-height: 100vh;
-  border: 1px solid var(--accent);
+  padding: 1rem 1.5rem 1.5rem 1.5rem;
+  border-radius: 1rem;
+  /* min-height: 100vh; */
+  border: 1px solid var(--foreground);
   background-color: var(--foreground);
+  background: linear-gradient(var(--foreground), var(--background));
   scale: 1;
   opacity: 1;
   transition: all 0.8s ease-in-out;
