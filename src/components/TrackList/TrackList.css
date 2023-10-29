@@ -5,7 +5,7 @@
     border: 1px solid var(--accent);
     border-radius: 0.4rem;
     background-color: var(--input);
-    min-height: 63.438px;
+    min-height: 83.0312px;
     overflow: hidden;
     max-height: min-content;
     animation: unfold 2s ease-out 1;

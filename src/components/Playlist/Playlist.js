@@ -3,11 +3,11 @@ import "./Playlist.css"; // Importing the Playlist component's styling
 import TrackList from "../TrackList/TrackList"; // Importing the TrackList component
 
 export default function Playlist(props) { // Defining a functional component called Playlist
-    const { playlist, onRemoveTrack, onNameChange, name, onSavePlaylist, changedName, inputRef } = props; // Destructuring the props object to get the playlist and onRemoveTrack functions
+    const { playlist, onRemoveTrack, onNameChange, name, onSavePlaylist, changedName, inputRef, onClearPlaylist } = props; // Destructuring the props object to get the playlist and onRemoveTrack functions
     const handleNameChange = (e) => {
         e.preventDefault();
         onNameChange(e.target.value); // Updating the name state
-      };      
+    };
 
     return (
         <>
@@ -22,12 +22,18 @@ export default function Playlist(props) { // Defining a functional component cal
                         <input className="playlistName" placeholder={name} onChange={handleNameChange} ref={inputRef} />
                     </div>
                     {playlist.length > 0 && changedName ? (
-                            <button className="cta" onClick={onSavePlaylist}>Save Playlist</button>
-                        ) : (
-                            <button disabled className="cta" onClick={onSavePlaylist}>Save Playlist</button>
-                        )}
+                        <button className="cta" onClick={onSavePlaylist}>Save Playlist</button>
+                    ) : (
+                        <button disabled className="cta" onClick={onSavePlaylist}>Save Playlist</button>
+                    )}
                 </div>
-                <TrackList tracks={playlist} onRemoveTrack={onRemoveTrack} isRemoval={true} isPlaylistTrack={"playListTrack"}/>
+                <TrackList tracks={playlist} onRemoveTrack={onRemoveTrack} isRemoval={true} isPlaylistTrack={"playListTrack"} />
+
+                <div className="buttonWrap">
+                    {playlist.length > 0 ? (
+                        <button className="textButton" onClick={onClearPlaylist}>Clear Playlist</button>
+                    ) : (<div></div>)}
+                </div>
             </div>
         </>
 

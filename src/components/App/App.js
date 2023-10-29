@@ -107,6 +107,16 @@ export default function App() {
     setIsFlex('flexPlaceholder');
   }
 
+
+  const onClearPlaylist = () => {
+    setPlaylist([]);
+    setAddedTrackIds([]);
+    setName('Name your playlist'); 
+    setChangedName(false);
+  }
+
+
+
   const onSavePlaylist = () => {
     const trackURIs = playlist.map(track => `spotify:track:${track.id}`);
     console.log(trackURIs);
@@ -135,7 +145,7 @@ export default function App() {
       <div className="wrap">
         <SearchBar onSearch={onSearch} inputRef={nameInputRef} onClearSearch={onClearSearch} setPlaceholder={setPlaceholder}/>
         <SearchResults results={results} onAddTrack={onAddTrack} placeholder={placeholder} isFlex={isFlex}/>
-        <Playlist playlist={playlist} onRemoveTrack={onRemoveTrack} onNameChange={onUpdatePlaylistName} name={name} onSavePlaylist={onSavePlaylist} changedName={changedName} inputRef={nameInputRef}/>
+        <Playlist playlist={playlist} onRemoveTrack={onRemoveTrack} onNameChange={onUpdatePlaylistName} name={name} onSavePlaylist={onSavePlaylist} changedName={changedName} inputRef={nameInputRef} onClearPlaylist={onClearPlaylist}/>
       </div>
     </div>
     </>

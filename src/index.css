@@ -93,6 +93,51 @@ button:disabled{
   transition: all .2s ease-in-out;
 }
 
+.buttonWrap{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.textButton{
+  background-color: transparent;
+  background: none;
+  border: 1px solid var(--background);
+  color: var(--primaryText);
+  font-weight: 400;
+  opacity: .6;
+  font-size: .9rem;
+  animation-delay: 2s;
+  margin: .5rem 0 0 0;
+  padding: .5rem 1rem;
+}
+
+.textButton:hover{
+  background: none;
+  background-color: var(--overlay);
+  border: 1px solid var(--overlay);
+  color: var(--primaryText);
+  opacity: .8;
+}
+
+.textButton:active{
+  background: none;
+  background-color: var(--overlay);
+  color: var(--primaryText);
+  border: 1px solid var(--foreground);
+  opacity: 1;
+}
+
+@keyframes fadeIn { 
+  0% { 
+    opacity: 0; 
+  } 
+  100% { 
+    opacity: 1; 
+  } 
+}
+
 
 .cta{
   min-width: 8.2rem;
@@ -140,18 +185,17 @@ form{
 .placeholder{
   box-sizing: border-box;
   border: 1px solid var(--input);
-  max-height: 80.438px;
-  height: 278.125px;
+  max-height: 83.0312px;
+  height: 278.125px; 
   text-align: center;
   border-radius: 0.5rem;
-  
 }
 
 .placeholder p{
   color: var(--secondaryText);
   opacity: .35;
   font-size: .8rem;
-  line-height: 80.438px;
+  line-height:  83.0312px;
 }
 
 #flexPlaceholder{
