@@ -10,7 +10,7 @@ export default function TrackList(props) {
   const tracksToDisplay = tracks ?? [];
 
   return (
-    <>
+    <div>
       {tracksToDisplay.length > 0 ? (
         <div className="TrackList" ref={trackListRef}>
           {tracksToDisplay.map((track) => (
@@ -22,6 +22,6 @@ export default function TrackList(props) {
           <p>Add Songs ☺</p>
         </div>
       )}
-    </>
+    </div>
   );
 }

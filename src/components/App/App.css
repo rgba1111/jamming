@@ -4,7 +4,7 @@
 }
 
 .App {
-  margin: 2rem auto 0 auto;
+  margin: 2rem auto 8rem auto;
   max-width: 36rem;
   padding: 1rem 1.5rem 1.5rem 1.5rem;
   border-radius: 1rem;
@@ -29,6 +29,11 @@
     transform: translateY(0);
     scale: 1;
   }
+}
+
+.trackListContainer{
+  height: fit-content;
+  max-height: 18rem;
 }
 
 .intro{

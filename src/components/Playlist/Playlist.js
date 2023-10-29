@@ -3,6 +3,8 @@ import "./Playlist.css"; // Importing the Playlist component's styling
 import TrackList from "../TrackList/TrackList"; // Importing the TrackList component
 import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
+import PerfectScrollbar from 'react-perfect-scrollbar'
+import 'react-perfect-scrollbar/dist/css/styles.css';
 
 export default function Playlist(props) { // Defining a functional component called Playlist
     const { playlist, onRemoveTrack, onNameChange, name, onSavePlaylist, changedName, inputRef, onClearPlaylist } = props; // Destructuring the props object to get the playlist and onRemoveTrack functions
@@ -49,20 +51,22 @@ export default function Playlist(props) { // Defining a functional component cal
                                 className="cta"
                                 data-tooltip-id="disabledOnSavePlaylist-tooltip" data-tooltip-content="Add songs and a name first"
                             >
-                                Save Playlist    
+                                Save Playlist
                             </button>
                             <Tooltip className="tooltip" id="disabledOnSavePlaylist-tooltip" />
                         </>
                     )}
                 </div>
-                <TrackList tracks={playlist} onRemoveTrack={onRemoveTrack} isRemoval={true} isPlaylistTrack={"playListTrack"} />
+                <div className="playlistContainer">
+                    <TrackList tracks={playlist} onRemoveTrack={onRemoveTrack} isRemoval={true} isPlaylistTrack={"playListTrack"} />
+                </div>
                 <div className="buttonWrap">
                     {playlist.length > 0 ? (
                         <>
                             <button
-                            className="textButton"
-                            onClick={onClearPlaylist}
-                            data-tooltip-id="onClearPlaylist-tooltip" data-tooltip-content="Remove all songs from playlist"
+                                className="textButton"
+                                onClick={onClearPlaylist}
+                                data-tooltip-id="onClearPlaylist-tooltip" data-tooltip-content="Remove all songs from playlist"
                             >
                                 Clear Playlist
                             </button>

@@ -33,6 +33,25 @@
   background: var(--background);
 }
 
+.scrollContainer{
+  border: 1px solid var(--accent) !important;
+  border-radius: 0.5rem !important;
+  padding: 2px 1px !important;
+  background-color: var(--input);
+}
+.ps__rail-y{
+  background-color: transparent !important;
+  overflow: visible !important;
+}
+.ps__rail-y:hover{
+  background-color: transparent !important;
+  overflow: visible !important;
+}
+
+.ps__rail-y:active{
+  background-color: transparent !important;
+}
+
 body {
   background-color: var(--background);
 }
@@ -196,18 +215,18 @@ form{
 
 .placeholder{
   box-sizing: border-box;
-  border: 1px solid var(--input);
-  max-height: 83.0312px;
+  max-height: 65.031px;
   height: 278.125px; 
   text-align: center;
   border-radius: 0.5rem;
+  overflow: hidden;
 }
 
 .placeholder p{
   color: var(--secondaryText);
   opacity: .35;
   font-size: .9rem;
-  line-height:  83.0312px;
+  line-height: 65.031px;
 }
 
 .tooltip{
@@ -272,9 +291,6 @@ form{
     --input-top: rgba(0, 0, 0, 0.15);
   }
 
-  .placeholder{
-    border: 1px solid var(--overlay);
-  }
 
   button{
     border: 1px solid var(--primaryHighlight);

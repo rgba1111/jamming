@@ -10,9 +10,7 @@ import TrackList from "../TrackList/TrackList";
  */
 
 export default function SearchResults(props) {
-  const { results, onAddTrack, placeholder, isFlex, wasAdded} = props;
-  console.log('SearchResults component received new results:', results);
-
+  const { results, onAddTrack, placeholder, isFlex, wasAdded} = props; 
   return (
     <>
       {results.length > 0 ? (

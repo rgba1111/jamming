@@ -4,6 +4,8 @@ import SearchBar from './../SearchBar/SearchBar';
 import SearchResults from './../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 import { search, getAccessToken, savePlaylist } from '../../util/Spotify';
+import PerfectScrollbar from 'react-perfect-scrollbar'
+import 'react-perfect-scrollbar/dist/css/styles.css';
 
 /**
  * The main component of the Jamming app.
@@ -83,7 +85,7 @@ export default function App() {
    */
   const onSearch = (term) => {
     if (!accessToken || term.length < 1) {
-      console.log('Access token not available or Search term is empty');
+      console.log('Access token not available. Search term too short or empty.');
       return;
     }
 
@@ -153,13 +155,21 @@ export default function App() {
       <div className="intro">
         <p>Find your favorite songs, add them to a playlist <br></br>and save the playlist to your Spotify account.</p>
       </div>
-
-      <div className="wrap">
-        <SearchBar onSearch={onSearch} inputRef={nameInputRef} onClearSearch={onClearSearch} setPlaceholder={setPlaceholder}/>
-        <SearchResults results={results} onAddTrack={onAddTrack} placeholder={placeholder} isFlex={isFlex} addedTrackIds={addedTrackIds} wasAdded={wasAdded}/>
-        <Playlist playlist={playlist} onRemoveTrack={onRemoveTrack} onNameChange={onUpdatePlaylistName} name={name} onSavePlaylist={onSavePlaylist} changedName={changedName} inputRef={nameInputRef} onClearPlaylist={onClearPlaylist}/>
-      </div>
+      <PerfectScrollbar>
+        <div className="wrap">
+          <SearchBar onSearch={onSearch} inputRef={nameInputRef} onClearSearch={onClearSearch} setPlaceholder={setPlaceholder}/>
+          <div className='scrollContainer'>
+            <PerfectScrollbar>
+              <div className='trackListContainer'>
+                <SearchResults results={results} onAddTrack={onAddTrack} placeholder={placeholder} isFlex={isFlex} addedTrackIds={addedTrackIds} wasAdded={wasAdded}/>
+              </div>
+            </PerfectScrollbar>
+          </div>
+            <Playlist playlist={playlist} onRemoveTrack={onRemoveTrack} onNameChange={onUpdatePlaylistName} name={name} onSavePlaylist={onSavePlaylist} changedName={changedName} inputRef={nameInputRef} onClearPlaylist={onClearPlaylist}/>
+        </div>
+        </PerfectScrollbar>
     </div>
+
     </>
   );
 }

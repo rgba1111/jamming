@@ -1,12 +1,7 @@
 .TrackList {
     display: flex;
     flex-direction: column;
-    padding: .5rem;
-    border: 1px solid var(--accent);
-    border-radius: 0.4rem;
-    background-color: var(--input);
-    min-height: 83.0312px;
-    overflow: hidden;
+    min-height: 65.031px;
     max-height: min-content;
     animation: unfold 2s ease-out 1;
 }
