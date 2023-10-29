@@ -1,27 +1,21 @@
+// TrackList.js
 import React, { useRef } from "react";
 import Track from "../Track/Track";
 import "./TrackList.css";
 
 export default function TrackList(props) {
-  const { tracks, onAddTrack, onRemoveTrack, isRemoval, isPlaylistTrack } = props;
+  const { tracks, onAddTrack, onRemoveTrack, isRemoval, wasAdded } = props;
   const trackListRef = useRef(null);
+
+  const tracksToDisplay = tracks ?? [];
 
   return (
     <>
-      {tracks.length > 0 ? (
+      {tracksToDisplay.length > 0 ? (
         <div className="TrackList" ref={trackListRef}>
-          {tracks.map((track) => (
-            <div className={isPlaylistTrack}>
-              <Track
-                key={track.id}
-                track={track}
-                onAddTrack={onAddTrack}
-                onRemoveTrack={onRemoveTrack}
-                isRemoval={isRemoval}
-              />
-            </div>
-          ))
-          }
+          {tracksToDisplay.map((track) => (
+            <Track key={track.id} track={track} onAddTrack={onAddTrack} onRemoveTrack={onRemoveTrack} isRemoval={isRemoval} wasAdded={track.wasAdded} />
+          ))}
         </div>
       ) : (
         <div className="placeholder">

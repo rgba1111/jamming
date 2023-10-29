@@ -19,33 +19,33 @@ export default function App() {
   const nameInputRef = useRef(null);
   const [placeholder, setPlaceholder] = useState('Search for anything');
   const [isFlex, setIsFlex] = useState('');
+  const [wasAdded, setWasAdded] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
 
-  /**
-   * Adds a track to the playlist and updates the addedTrackIds state.
-   * @param {Object} track - The track to be added to the playlist.
-   */
+  
   const onAddTrack = (track) => {
     if (!addedTrackIds.includes(track.id)) {
-      setPlaylist(prevPlaylist => [...prevPlaylist, track]);
-      setAddedTrackIds(prevIds => [...prevIds, track.id]);
+      const updatedTrack = { ...track, wasAdded: true };
+      setPlaylist(prevPlaylist => [...prevPlaylist, updatedTrack]);
+      setAddedTrackIds(prevIds => [...prevIds, updatedTrack.id]);
+      setResults(prevResults => prevResults.map(item => item.id === track.id ? updatedTrack : item));
     } else {
       console.log("Track is already in the playlist!");
     }
   };
-
-  /**
-   * Removes a track from the playlist and updates the addedTrackIds state.
-   * @param {Object} track - The track to be removed from the playlist.
-   */
+  
   const onRemoveTrack = (track) => {
     if (addedTrackIds.includes(track.id)) {
+      const updatedTrack = { ...track, wasAdded: false };
       setPlaylist(prevPlaylist => prevPlaylist.filter(item => item.id !== track.id));
       setAddedTrackIds(prevIds => prevIds.filter(id => id !== track.id));
+      setResults(prevResults => prevResults.map(item => item.id === track.id ? updatedTrack : item));
     } else {
       console.log("Track is not in the playlist!");
     }
   };
-
+  
+  
   /**
    * Updates the name state of the playlist.
    * @param {string} name - The new name for the playlist.
@@ -82,19 +82,27 @@ export default function App() {
    * @param {string} term - The search term.
    */
   const onSearch = (term) => {
-
     if (!accessToken || term.length < 1) {
       console.log('Access token not available or Search term is empty');
       return;
     }
 
-    search(term, accessToken) 
+    setSearchTerm(term);
+
+    search(term, accessToken)
       .then((results) => {
         if (results.length < 1) {
           setPlaceholder('No results. Try another search term!');
           return;
         } else {
-          setResults(results);
+          const updatedResults = results.map((track) => {
+            if (addedTrackIds.includes(track.id)) {
+              return { ...track, wasAdded: true };
+            } else {
+              return track;
+            }
+          });
+          setResults(updatedResults);
         }
       })
       .catch((error) => {
@@ -113,6 +121,9 @@ export default function App() {
     setAddedTrackIds([]);
     setName('Name your playlist'); 
     setChangedName(false);
+    setAddedTrackIds([]);
+    playlist.forEach(track => onRemoveTrack(track));
+    // onSearch(searchTerm);
   }
 
 
@@ -128,11 +139,11 @@ export default function App() {
       // setResults([]);
       alert(`${name} saved to your account!`);
       nameInputRef.current.value = '';
+      setAddedTrackIds([]);
+      playlist.forEach(track => onRemoveTrack(track));
     });
   };
   
-
-
   return (
     <>
       <div className="App">
@@ -142,9 +153,10 @@ export default function App() {
       <div className="intro">
         <p>Find your favorite songs, add them to a playlist <br></br>and save the playlist to your Spotify account.</p>
       </div>
+
       <div className="wrap">
         <SearchBar onSearch={onSearch} inputRef={nameInputRef} onClearSearch={onClearSearch} setPlaceholder={setPlaceholder}/>
-        <SearchResults results={results} onAddTrack={onAddTrack} placeholder={placeholder} isFlex={isFlex}/>
+        <SearchResults results={results} onAddTrack={onAddTrack} placeholder={placeholder} isFlex={isFlex} addedTrackIds={addedTrackIds} wasAdded={wasAdded}/>
         <Playlist playlist={playlist} onRemoveTrack={onRemoveTrack} onNameChange={onUpdatePlaylistName} name={name} onSavePlaylist={onSavePlaylist} changedName={changedName} inputRef={nameInputRef} onClearPlaylist={onClearPlaylist}/>
       </div>
     </div>

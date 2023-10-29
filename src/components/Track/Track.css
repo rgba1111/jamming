@@ -31,7 +31,12 @@
     filter: contrast(1);
     background: transparent;
     background-color: rgba(0, 0, 0, 0.1);
-    
+}
+.trackAction:disabled:hover{
+    border: none;
+    filter: contrast(0);
+    background: transparent;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .trackAction:active{
@@ -89,6 +94,10 @@
     animation: bg-fade 1s ease-in-out;
 }
 
+.added{
+    filter: grayscale(1);
+    transition: all .2s ease-in-out;
+}
 
 
 @keyframes bg-fade {

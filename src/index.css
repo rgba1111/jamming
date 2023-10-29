@@ -129,6 +129,13 @@ button:disabled{
   opacity: 1;
 }
 
+.textButton:disabled:hover{
+  background: none;
+  border: 1px solid var(--background);
+  color: var(--primaryText);
+  opacity: .4;
+}
+
 @keyframes fadeIn { 
   0% { 
     opacity: 0; 
@@ -230,6 +237,11 @@ form{
 
 #crossIcon {
   background: url('./icons/cross.svg') no-repeat;
+  background-position: center;
+}
+
+#checkIcon {
+  background: url('./icons/check.svg') no-repeat;
   background-position: center;
 }
 

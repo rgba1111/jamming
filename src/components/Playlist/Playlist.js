@@ -32,7 +32,7 @@ export default function Playlist(props) { // Defining a functional component cal
                 <div className="buttonWrap">
                     {playlist.length > 0 ? (
                         <button className="textButton" onClick={onClearPlaylist}>Clear Playlist</button>
-                    ) : (<div></div>)}
+                    ) : (<button disabled className="textButton" onClick={onClearPlaylist}>Clear Playlist</button>)}
                 </div>
             </div>
         </>

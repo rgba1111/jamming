@@ -42,7 +42,6 @@ export const search = async (term) => {
         if (!jsonResponse.tracks) {
             return [];
         }
-
         return jsonResponse.tracks.items.map((track) => ({
             id: track.id,
             name: track.name,

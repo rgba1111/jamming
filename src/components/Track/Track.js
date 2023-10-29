@@ -1,7 +1,8 @@
 // Track.js
 import React from "react";
 import "./Track.css";
-
+import 'react-tooltip/dist/react-tooltip.css'
+import { Tooltip } from 'react-tooltip'
 /**
  * Track Component:
  * Displays track information and provides buttons for adding/removing the track.
@@ -13,24 +14,55 @@ import "./Track.css";
  * @param {boolean} isRemoval - Indicates whether the remove button should be displayed.
  */
 export default function Track(props) {
-  const { track, onAddTrack, onRemoveTrack, isRemoval } = props;
+  const { track, onAddTrack, onRemoveTrack, isRemoval, wasAdded } = props;
 
   return (
-    <div className="track">
-      <div className="trackInformation">
-        <img className="trackImage" src={track.image} alt="album cover" />
-        <div className="trackInformationText">
-          <h3 className="trackName">{track.name}</h3>
-          <p className="trackArtist">{track.artist} · {track.album}</p>
-        </div>
-      </div>
+
+
+    <>
       {isRemoval ? (
-        // Display remove button if isRemoval is true
-        <button className="trackAction" onClick={() => onRemoveTrack(track)}><div className="Icon" id="minusIcon"></div></button>
+        <div className="track">
+
+          <div className="trackInformation">
+            <img className="trackImage" src={track.image} alt={track.name + ' album cover'} />
+            <div className="trackInformationText">
+              <h3 className="trackName">{track.name}</h3>
+              <p className="trackArtist">{track.artist} · {track.album}</p>
+            </div>
+          </div>
+          <button data-tooltip-id="minusIcon-tooltip" data-tooltip-content="Remove track" className="trackAction" onClick={() => onRemoveTrack(track)}><div className="Icon" id="minusIcon"></div></button>
+          <Tooltip id="minusIcon-tooltip" />
+
+        </div>
       ) : (
-        // Display add button if isRemoval is false
-        <button className="trackAction" onClick={() => onAddTrack(track)}><div className="Icon" id="plusIcon"></div></button>
+        wasAdded ? (
+          <div className="track">
+            <div className="trackInformation">
+              <img className="trackImage added" src={track.image} alt={track.name + ' album cover'} />
+              <div className="trackInformationText">
+                <h3 className="trackName">{track.name}</h3>
+                <p className="trackArtist">{track.artist} · {track.album}</p>
+              </div>
+            </div>
+            <button disabled data-tooltip-id="checkIcon-tooltip" data-tooltip-content="Already added"
+              className="trackAction" onClick={() => onAddTrack(track)}><div className="Icon" id="checkIcon"></div></button>
+            <Tooltip id="checkIcon-tooltip" />
+          </div>
+        ) : (
+          <div className="track">
+            <div className="trackInformation">
+              <img className="trackImage" src={track.image} alt={track.name + ' album cover'} />
+              <div className="trackInformationText">
+                <h3 className="trackName">{track.name}</h3>
+                <p className="trackArtist">{track.artist} · {track.album}</p>
+              </div>
+            </div>
+            <button data-tooltip-id="plusIcon-tooltip" data-tooltip-content="Add track" className="trackAction" onClick={() => onAddTrack(track)}><div className="Icon" id="plusIcon"></div></button>
+            <Tooltip id="plusIcon-tooltip" />
+          </div>
+        )
       )}
-    </div>
+    </>
+
   );
 }

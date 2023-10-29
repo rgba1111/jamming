@@ -8,14 +8,16 @@ import TrackList from "../TrackList/TrackList";
  * @param {Function} props.onAddTrack - The function to add a track to the playlist.
  * @returns {JSX.Element} - The JSX element to render.
  */
-export default function SearchResults(props) {
 
-  const { results, onAddTrack, placeholder, isFlex } = props;
+export default function SearchResults(props) {
+  const { results, onAddTrack, placeholder, isFlex, wasAdded} = props;
+  console.log('SearchResults component received new results:', results);
+
   return (
     <>
-      {results.length > 1 ? (
+      {results.length > 0 ? (
         <div>
-          <TrackList tracks={results} onAddTrack={onAddTrack} />
+          <TrackList tracks={results} onAddTrack={onAddTrack} wasAdded={wasAdded}/>
         </div>
       ) : (
         <div className="placeholder" id={isFlex}>
