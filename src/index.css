@@ -11,6 +11,7 @@
 }
 
 :root {
+  --green: #42B556;
   --white: #fff;
   --black: #000;
   --gray02: #fcfcfc;
@@ -22,6 +23,15 @@
   --gray90: #1D2229;
 }
 
+::-moz-selection {
+  color: var(--green);
+  background: var(--background);
+}
+
+::selection {
+  color: var(--green);
+  background: var(--background);
+}
 
 body {
   background-color: var(--background);
@@ -54,7 +64,7 @@ p{
 input{
   font-size: 1rem;
   padding: 0.5rem;
-  border-radius: 0.4rem;
+  border-radius: 0.5rem;
   flex: 1 0 0;
   border: 1px solid var(--input);
   background-color: var(--input);
@@ -71,8 +81,8 @@ button{
   font-weight: 500;
   font-size: 1rem;
   padding: 0.5rem;
-  border-radius: 0.4rem;
-  transition: all 0.2s ease-in-out;
+  border-radius: 0.5rem;
+  transition: all .2s ease-in-out;
   cursor: pointer;
   text-align: center;
 }
@@ -80,10 +90,8 @@ button{
 button:disabled{
   opacity: .6;
   cursor: not-allowed;
-  transition: all 2s ease-in-out;
+  transition: all .2s ease-in-out;
 }
-
-
 
 
 .cta{
@@ -135,7 +143,7 @@ form{
   max-height: 80.438px;
   height: 278.125px;
   text-align: center;
-  border-radius: 0.4rem;
+  border-radius: 0.5rem;
   
 }
 
@@ -204,11 +212,13 @@ form{
   button{
     border: 1px solid var(--primaryHighlight);
     background-color: var(--primaryHighlight);
+    background: linear-gradient(180deg, #000 0%, #333 100%);
     color: var(--white);
   }
 
   button:hover{
     background-color: var(--tertiaryHighlight);
+    background: linear-gradient(180deg, #000 0%, #000 100%);
     border-color: var(--secondaryHighlight);
     color: var(--gray10);
   }
@@ -252,11 +262,11 @@ form{
   }
   button{
     border: 1px solid var(--gray10);
-    background-color: var(--primaryHighlight);
+    background: linear-gradient(180deg, #ffffff 0%, #c9c9c9 100%);
     color: var(--black);
   }
   button:hover{
-    background-color: var(--gray20);
+    background: linear-gradient(180deg, #ffffff 0%, #ffffff 100%);
     color: var(--black);
   }
 

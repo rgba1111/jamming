@@ -14,6 +14,7 @@
     width: 2.3rem;
     height: 2.3rem;
     background-color: transparent;
+    background: transparent;
     border: none;
     color: var(--primaryText);
     font-size: 1rem;
@@ -26,10 +27,12 @@
   .resetButton:hover{
     filter: contrast(1);
     background-color: transparent;
+    background: transparent;
   }
   
   .resetButton:active{
     background-color: transparent;
+    background: transparent;
     filter: contrast(2);
   }
   

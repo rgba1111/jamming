@@ -19,6 +19,7 @@
     align-items: center;
     justify-content: center;
     background-color: transparent;
+    background: transparent;
     border: none;
     opacity: 1;
     filter: contrast(0);
@@ -26,14 +27,16 @@
 }
 
 .trackAction:hover{
-    background-color: transparent;
     border: none;
     filter: contrast(1);
+    background: transparent;
     background-color: rgba(0, 0, 0, 0.1);
+    
 }
 
 .trackAction:active{
     filter: contrast(0);
+    background: transparent;
     background-color: rgba(0, 0, 0, 0.2);
 }
 
