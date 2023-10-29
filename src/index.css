@@ -129,6 +129,11 @@ button:disabled{
   opacity: 1;
 }
 
+.textButton:disabled{
+  opacity: 0;
+  display: none;
+}
+
 .textButton:disabled:hover{
   background: none;
   border: 1px solid var(--background);
@@ -201,8 +206,14 @@ form{
 .placeholder p{
   color: var(--secondaryText);
   opacity: .35;
-  font-size: .8rem;
+  font-size: .9rem;
   line-height:  83.0312px;
+}
+
+.tooltip{
+  padding: .5rem !important;
+  margin-top: 0.25rem !important;
+  border-radius: .25rem !important;
 }
 
 #flexPlaceholder{
@@ -284,7 +295,6 @@ form{
     background-color: var(--primaryHighlight);
     color: var(--white);
   }
-  
 
   button:active{
     background-color: var(--secondaryHighlight);
@@ -293,6 +303,12 @@ form{
 
   input:hover{
     background-color: var(--input-hover);
+  }
+
+  .tooltip{
+    background: none !important;
+    background-color: var(--black) !important;
+    border: 1px solid var(--gray10) !important;
   }
 
 }
@@ -339,7 +355,13 @@ form{
   input:hover{
     background-color: var(--input-hover);
   }
-  
+
+  .tooltip{
+    background: none !important;
+    background-color: var(--gray50) !important;
+    border: 1px solid var(--foreground) !important;
+  }
+
 }
 
 @keyframes unfold {

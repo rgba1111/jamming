@@ -31,7 +31,7 @@ export default function Track(props) {
             </div>
           </div>
           <button data-tooltip-id="minusIcon-tooltip" data-tooltip-content="Remove track" className="trackAction" onClick={() => onRemoveTrack(track)}><div className="Icon" id="minusIcon"></div></button>
-          <Tooltip id="minusIcon-tooltip" />
+          <Tooltip className="tooltip" id="minusIcon-tooltip" />
 
         </div>
       ) : (
@@ -46,7 +46,7 @@ export default function Track(props) {
             </div>
             <button disabled data-tooltip-id="checkIcon-tooltip" data-tooltip-content="Already added"
               className="trackAction" onClick={() => onAddTrack(track)}><div className="Icon" id="checkIcon"></div></button>
-            <Tooltip id="checkIcon-tooltip" />
+            <Tooltip className="tooltip" id="checkIcon-tooltip" />
           </div>
         ) : (
           <div className="track">
@@ -58,7 +58,7 @@ export default function Track(props) {
               </div>
             </div>
             <button data-tooltip-id="plusIcon-tooltip" data-tooltip-content="Add track" className="trackAction" onClick={() => onAddTrack(track)}><div className="Icon" id="plusIcon"></div></button>
-            <Tooltip id="plusIcon-tooltip" />
+            <Tooltip className="tooltip" id="plusIcon-tooltip" />
           </div>
         )
       )}

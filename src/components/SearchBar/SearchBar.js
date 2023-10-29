@@ -38,7 +38,6 @@ export default function SearchBar(props) {
             value={term}
             ref={inputRef}
             onChange={handleChange}
-            // onChange={(e) => setTerm(e.target.value)}
           />
           {term.length > 0 ? (
             <button className="resetButton" onClick={clearSearch} type="reset">
