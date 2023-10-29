@@ -18,7 +18,8 @@ export default function SearchBar(props) {
 
   const handleChange = (e) => {
     setTerm(e.target.value);
-
+    e.preventDefault();
+    onSearch(term);
   }
 
 
@@ -45,12 +46,15 @@ export default function SearchBar(props) {
             </button>
           ):(<div></div>)}
         </div>
-        {term.length > 0 ? (
+
+        {/* button to manually submit search */}
+
+        {/* {term.length > 0 ? (
           <button className="cta" type="submit">Search Songs</button>
         ) : (
 
           <button disabled className="cta" type="submit">Search Songs</button>
-        )}
+        )} */}
       </form>
     </>
   );
