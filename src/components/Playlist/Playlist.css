@@ -1,12 +1,12 @@
 .playlist {
-    margin-top: 1rem;
+    margin-top: 2rem;
     padding-top: 1rem;
 }
 
 .playlistContainer{
     border: 1px solid var(--accent) !important;
     border-radius: 0.5rem !important;
-    padding: 4px 2px !important;
+    padding:  0 !important;
     background-color: var(--input);
 }
 

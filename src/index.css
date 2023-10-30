@@ -35,11 +35,12 @@
 
 .scrollContainer{
   border: 1px solid var(--accent) !important;
-  border-radius: 0.5rem !important;
-  padding: 2px 1px !important;
+  border-radius: 0.75rem !important;
   background-color: var(--input);
+  padding: 0 !important;
 }
 .ps__rail-y{
+  margin: 4px 2px !important;
   background-color: transparent !important;
   overflow: visible !important;
 }
