@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useRef} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import SearchBar from './../SearchBar/SearchBar';
 import SearchResults from './../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 import { search, getAccessToken, savePlaylist } from '../../util/Spotify';
+import ColorWrapper from '../ColorWrapper/ColorWrapper';
+
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import 'react-perfect-scrollbar/dist/css/styles.css';
 
@@ -24,30 +26,40 @@ export default function App() {
   const [wasAdded, setWasAdded] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
-  
+
+  const [imgSource, setImgSource] = useState('');
+
+  // const Loading = () => <div>Loading...</div>;
+
+
   const onAddTrack = (track) => {
     if (!addedTrackIds.includes(track.id)) {
       const updatedTrack = { ...track, wasAdded: true };
       setPlaylist(prevPlaylist => [...prevPlaylist, updatedTrack]);
       setAddedTrackIds(prevIds => [...prevIds, updatedTrack.id]);
       setResults(prevResults => prevResults.map(item => item.id === track.id ? updatedTrack : item));
+      setImgSource(track.image);
     } else {
       console.log("Track is already in the playlist!");
     }
   };
-  
+
+
   const onRemoveTrack = (track) => {
     if (addedTrackIds.includes(track.id)) {
       const updatedTrack = { ...track, wasAdded: false };
       setPlaylist(prevPlaylist => prevPlaylist.filter(item => item.id !== track.id));
       setAddedTrackIds(prevIds => prevIds.filter(id => id !== track.id));
       setResults(prevResults => prevResults.map(item => item.id === track.id ? updatedTrack : item));
+      if (playlist.length === 1) {
+        setImgSource('');
+      }
     } else {
       console.log("Track is not in the playlist!");
     }
   };
-  
-  
+
+
   /**
    * Updates the name state of the playlist.
    * @param {string} name - The new name for the playlist.
@@ -55,18 +67,15 @@ export default function App() {
   const onUpdatePlaylistName = (name) => {
     if (name.length < 1) {
       setName('My playlist');
-      setChangedName(false); 
+      setChangedName(false);
 
     } else {
       setName(name);
-      setChangedName(true); 
+      setChangedName(true);
     }
   };
 
   useEffect(() => {
-    /**
-     * Fetches the access token and updates the accessToken state.
-     */
     const fetchData = async () => {
       try {
         const token = await getAccessToken();
@@ -121,14 +130,11 @@ export default function App() {
   const onClearPlaylist = () => {
     setPlaylist([]);
     setAddedTrackIds([]);
-    setName('Name your playlist'); 
-    setChangedName(false);
+    onUpdatePlaylistName('My playlist');
     setAddedTrackIds([]);
     playlist.forEach(track => onRemoveTrack(track));
-    // onSearch(searchTerm);
+    setImgSource('');
   }
-
-
 
   const onSavePlaylist = () => {
     const trackURIs = playlist.map(track => `spotify:track:${track.id}`);
@@ -143,33 +149,38 @@ export default function App() {
       nameInputRef.current.value = '';
       setAddedTrackIds([]);
       playlist.forEach(track => onRemoveTrack(track));
+      setImgSource('');
     });
   };
-  
+
   return (
     <>
       <div className="App">
-      <div className="header">
-        <h1>jammming</h1>
-      </div>
-      <div className="intro">
-        <p>Find your favorite songs, add them to a playlist <br></br>and save the playlist to your Spotify account.</p>
-      </div>
-      <PerfectScrollbar>
-        <div className="wrap">
-          <SearchBar onSearch={onSearch} inputRef={nameInputRef} onClearSearch={onClearSearch} setPlaceholder={setPlaceholder}/>
-          <div className='scrollContainer'>
-            <PerfectScrollbar>
-              <div className='trackListContainer'>
-                <SearchResults results={results} onAddTrack={onAddTrack} placeholder={placeholder} isFlex={isFlex} addedTrackIds={addedTrackIds} wasAdded={wasAdded}/>
-              </div>
-            </PerfectScrollbar>
-          </div>
-            <Playlist playlist={playlist} onRemoveTrack={onRemoveTrack} onNameChange={onUpdatePlaylistName} name={name} onSavePlaylist={onSavePlaylist} changedName={changedName} inputRef={nameInputRef} onClearPlaylist={onClearPlaylist}/>
+        <div className="header">
+          <h1>jammming</h1>
         </div>
-        </PerfectScrollbar>
-    </div>
+        <div className="intro">
+          <p>Find your favorite songs, add them to a playlist <br></br>and save the playlist to your Spotify account.</p>
+        </div>
+        <PerfectScrollbar>
+          <div className="wrap">
+            <SearchBar onSearch={onSearch} inputRef={nameInputRef} onClearSearch={onClearSearch} setPlaceholder={setPlaceholder} />
+            <div className='scrollContainer'>
+              <PerfectScrollbar>
+                <div className='trackListContainer'>
+                  <SearchResults results={results} onAddTrack={onAddTrack} placeholder={placeholder} isFlex={isFlex} addedTrackIds={addedTrackIds} wasAdded={wasAdded} />
+                </div>
+              </PerfectScrollbar>
+            </div>
+            <div className='blurContainer'>
+              <ColorWrapper imgSource={imgSource}></ColorWrapper>
+              <Playlist playlist={playlist} onRemoveTrack={onRemoveTrack} onNameChange={onUpdatePlaylistName} name={name} onSavePlaylist={onSavePlaylist} changedName={changedName} inputRef={nameInputRef} onClearPlaylist={onClearPlaylist} />
+            </div>
 
+          </div>
+        </PerfectScrollbar>
+      </div>
     </>
   );
+  
 }

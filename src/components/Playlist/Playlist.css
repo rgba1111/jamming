@@ -1,35 +1,47 @@
+
+
 .playlist {
-    margin-top: 2rem;
-    padding-top: 1rem;
+    padding: 1rem;
+    overflow: visible;
+    min-height: 60vh;
+    border: 1px solid var(--foreground);
+    border-bottom: none;
+    /* background-color: var(--foreground); */
+    border-radius: 1.5rem 1.5rem 0 0;
+    background-image: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, var(--background) 100%);
 }
 
-.playlistContainer{
+.playlistContainer {
     border: 1px solid var(--accent) !important;
     border-radius: 0.5rem !important;
-    padding:  0 !important;
+    padding: 0 !important;
     background-color: var(--input);
 }
 
 .playlistInput {
     display: flex;
+    overflow: visible;
+    flex-direction: column;
     align-items: center;
-    flex-direction: row;
-    align-items: center;
-    gap: .5rem;
+    gap: 1rem;
     margin: 0;
     width: 100%;
 }
 
+.wrap {
+    overflow: visible;
+}
+
 .playlistName {
-    width: 100%;
+    min-width: 100%;
     background-color: transparent;
     border: 0;
     border-radius: 0;
     border-bottom: 1px solid var(--input);
-    margin-right: .5rem;
-    font-size: 1.125rem;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    text-align: center;
     font-weight: 600;
-    padding: 0.5rem 0.5rem 0.5rem 0;
     transition: all 0.2s ease-in-out;
 }
 
@@ -55,6 +67,28 @@
 .playlistName:focus {
     border-bottom: 1px solid var(--primaryText);
     background-color: transparent;
+    border-bottom: 1px solid var(--primaryText);
+}
+
+
+.playlistBar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    overflow: visible;
+    margin: 0 0rem .5rem 0;
+    width: 100%;
+}
+
+.playlistActions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+    gap: .5rem;
+    overflow: visible;
+    margin: 0;
 }
 
 @keyframes heartbeat {
@@ -62,12 +96,14 @@
         transform: scale(1);
         opacity: 1;
     }
+
     50% {
-        transform: scale(1.4);
+        transform: scale(1.2);
         rotate: -5deg;
         opacity: 0.7;
         filter: contrast(2);
     }
+
     100% {
         transform: scale(1);
         opacity: 1;

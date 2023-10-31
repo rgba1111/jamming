@@ -83,7 +83,7 @@ p{
 
 input{
   font-size: 1rem;
-  padding: 0.5rem;
+  padding: .75rem 0.75rem;
   border-radius: 0.5rem;
   flex: 1 0 0;
   border: 1px solid var(--input);
@@ -123,13 +123,12 @@ button:disabled{
 .textButton{
   background-color: transparent;
   background: none;
-  border: 1px solid var(--background);
+  border: 1px solid transparent;
   color: var(--primaryText);
   font-weight: 400;
   opacity: .6;
-  font-size: .9rem;
+  font-size: 1rem;
   animation-delay: 2s;
-  margin: .5rem 0 0 0;
   padding: .5rem 1rem;
 }
 
@@ -212,6 +211,8 @@ form{
   flex: 1 0 0;
   gap: .5rem;
   margin: 1rem 0 1rem 0;
+  overflow: visible;
+  min-width: 100%;
 }
 
 .placeholder{
@@ -234,45 +235,47 @@ form{
   padding: .5rem !important;
   margin-top: 0.25rem !important;
   border-radius: .25rem !important;
+  border: 1px solid var(--background) !important;
+  /* box-shadow: 0px 16px 48px 0px rgba(0, 0, 0, 0.22) !important; */
 }
 
 #flexPlaceholder{
   animation: fold .4s ease-out 1;
 }
 #searchIcon {
-  background: url('./icons/search.svg') no-repeat;
+  background: url('./assets/icons/search.svg') no-repeat;
 }
 
 #editIcon {
-  background: url('./icons/edit.svg') no-repeat;
+  background: url('./assets/icons/edit.svg') no-repeat;
 }
 
 
 #playIcon {
-  background: url('./icons/play.svg') no-repeat;
+  background: url('./assets/icons/play.svg') no-repeat;
 }
 
 #heartIconOutline {
-  background: url('./icons/heart-outline.svg') no-repeat;
+  background: url('./assets/icons/heart-outline.svg') no-repeat;
 }
 #heartIconFilled {
-  background: url('./icons/heart-filled.svg') no-repeat;
+  background: url('./assets/icons/heart-filled.svg') no-repeat;
 }
 
 #plusIcon {
-  background: url('./icons/plus.svg') no-repeat;
+  background: url('./assets/icons/plus.svg') no-repeat;
 }
 #minusIcon {
-  background: url('./icons/minus.svg') no-repeat;
+  background: url('./assets/icons/minus.svg') no-repeat;
 }
 
 #crossIcon {
-  background: url('./icons/cross.svg') no-repeat;
+  background: url('./assets/icons/cross.svg') no-repeat;
   background-position: center;
 }
 
 #checkIcon {
-  background: url('./icons/check.svg') no-repeat;
+  background: url('./assets/icons/check.svg') no-repeat;
   background-position: center;
 }
 
