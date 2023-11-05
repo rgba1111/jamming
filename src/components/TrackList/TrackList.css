@@ -10,3 +10,7 @@
 .searchResultList{
     animation: unfold 2s ease-out 1;
 }
+
+#playlistPlaceholder-tooltip{
+    margin-top: 1.5rem !important;
+}

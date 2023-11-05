@@ -3,7 +3,6 @@ import "./Playlist.css";
 import TrackList from "../TrackList/TrackList";
 import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
-import ColorWrapper from '../ColorWrapper/ColorWrapper';
 
 export default function Playlist(props) {
 

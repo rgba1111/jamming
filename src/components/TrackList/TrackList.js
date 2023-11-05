@@ -1,9 +1,10 @@
 import React, { useRef } from "react";
 import Track from "../Track/Track";
 import "./TrackList.css";
+import { Tooltip } from 'react-tooltip'
 
 export default function TrackList(props) {
-  const { tracks, onAddTrack, onRemoveTrack, isRemoval, wasAdded} = props;
+  const { tracks, onAddTrack, onRemoveTrack, isRemoval, wasAdded } = props;
   const trackListRef = useRef(null);
 
   const tracksToDisplay = tracks ?? [];
@@ -19,13 +20,16 @@ export default function TrackList(props) {
               onRemoveTrack={onRemoveTrack}
               isRemoval={isRemoval}
               wasAdded={track.wasAdded}
-              />
+            />
           ))}
         </div>
       ) : (
-        <div className="placeholder">
-          <p>Add Songs ☺</p>
-        </div>
+        <>
+          <div className="placeholder" data-tooltip-id="playlistPlaceholder-tooltip" data-tooltip-content="Add songs by clicking ⨁">
+            <p>Add Songs ☺</p>
+          </div>
+          <Tooltip className="tooltip" id="playlistPlaceholder-tooltip" />
+        </>
       )}
     </div>
   );
