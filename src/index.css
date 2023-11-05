@@ -319,6 +319,7 @@ form{
   button:active{
     background-color: var(--secondaryHighlight);
     border-color: var(--primaryHighlight);
+    opacity: 0.75;
   }
 
   input:hover{
@@ -378,6 +379,7 @@ form{
 
   button:active{
     background-color: var(--gray30);
+    opacity: 0.75;
   }
 
   input:hover{
