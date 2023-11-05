@@ -43,12 +43,20 @@
   margin: 4px 2px !important;
   background-color: transparent !important;
   overflow: visible !important;
+
 }
 .ps__rail-y:hover{
   background-color: transparent !important;
   overflow: visible !important;
 }
 
+.ps__thumb-y{
+  min-height: 53px !important;
+}
+
+.ps__thumb-x{
+  opacity: 0 !important;
+}
 .ps__rail-y:active{
   background-color: transparent !important;
 }

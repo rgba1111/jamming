@@ -40,7 +40,6 @@ export default function SearchBar(props) {
     var stopElement_active = document.querySelector('.searchResultsWrap');
 
     if (stopElement_idle) {
-      console.log(stopElement_idle);
       var stopPoint_idle = getOffsetTop(stopElement_idle); 
   
       if (window.scrollY > stopPoint_idle) {

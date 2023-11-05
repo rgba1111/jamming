@@ -35,7 +35,6 @@ export default function Playlist(props) {
 
         var playlistName = document.querySelector('.playlistName');
         playlistName.focus();
-        
     };
 
     window.addEventListener('scroll', function () {
