@@ -1,35 +1,59 @@
-
+.playlistWrap{
+    /* overflow: hidden; */
+    border-radius: 1.5rem 1.5rem 0 0;
+    border: 1px solid red;
+}
 
 .playlist {
-    padding: 1rem;
-    overflow: visible;
-    min-height: 60vh;
+    padding: 0 0 6rem 0;
     border: 1px solid var(--foreground);
     border-bottom: none;
-    /* background-color: var(--foreground); */
+    min-height: 100vh;
+    /* backgroundcolor: var(--foreground); */
     border-radius: 1.5rem 1.5rem 0 0;
-    background-image: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, var(--background) 100%);
+    margin-top: 3rem;
+    z-index: 200;
 }
 
 .playlistContainer {
-    border: 1px solid var(--accent) !important;
-    border-radius: 0.5rem !important;
-    padding: 0 !important;
-    background-color: var(--input);
+    border-radius: 0.5rem;
+    padding-top: .5rem;
 }
 
 .playlistInput {
     display: flex;
-    overflow: visible;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 0;
     margin: 0;
     width: 100%;
+    border-radius: 1.5rem 1.5rem 0 0;
+    padding: 1rem 1rem 0rem 1rem;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
-.wrap {
-    overflow: visible;
+
+.playlistBar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.5rem 1rem .5rem 1rem;
+    justify-content: space-between;
+    margin: 0;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 32;
+    border-bottom: 1px solid var(--overlay);
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: background-color .2s ease-out;
+}
+
+
+.testPlaceholder {
+    height: 80vh;
+    background: teal;
 }
 
 .playlistName {
@@ -37,12 +61,14 @@
     background-color: transparent;
     border: 0;
     border-radius: 0;
-    border-bottom: 1px solid var(--input);
-    margin-bottom: 1rem;
-    font-size: 2rem;
+    border: 0;
+    margin-top: -1rem;
+    font-size: 1.8rem;
     text-align: center;
     font-weight: 600;
     transition: all 0.2s ease-in-out;
+    z-index: 1;
+    padding: 1.5rem 1.5rem 1.5rem 1.5rem;
 }
 
 .playlistName::placeholder {
@@ -56,7 +82,7 @@
 }
 
 .playlistName:hover {
-    border-bottom: 1px solid var(--input);
+    border: 0;
     background-color: transparent;
 }
 
@@ -65,20 +91,8 @@
 }
 
 .playlistName:focus {
-    border-bottom: 1px solid var(--primaryText);
+    border: 0;
     background-color: transparent;
-    border-bottom: 1px solid var(--primaryText);
-}
-
-
-.playlistBar {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    overflow: visible;
-    margin: 0 0rem .5rem 0;
-    width: 100%;
 }
 
 .playlistActions {
@@ -87,7 +101,7 @@
     align-items: center;
     justify-content: right;
     gap: .5rem;
-    overflow: visible;
+
     margin: 0;
 }
 

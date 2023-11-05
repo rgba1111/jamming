@@ -179,7 +179,6 @@ form{
   flex-direction: row;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 1rem;
 }
 
 .Icon {
@@ -211,7 +210,7 @@ form{
   flex: 1 0 0;
   gap: .5rem;
   margin: 1rem 0 1rem 0;
-  overflow: visible;
+  /* overflow: visible; */
   min-width: 100%;
 }
 
@@ -232,6 +231,7 @@ form{
 }
 
 .tooltip{
+  z-index: 100 !important;
   padding: .5rem !important;
   margin-top: 0.25rem !important;
   border-radius: .25rem !important;
@@ -366,6 +366,14 @@ form{
     border: 1px solid var(--gray10);
     background-color: var(--primaryHighlight);
     color: var(--black);
+  }
+
+  .cta.disabled{
+    border: 1px solid var(--gray10);
+    background-color: var(--primaryHighlight);
+    color: var(--black);
+    opacity: .5;
+    cursor: not-allowed;
   }
 
   button:active{

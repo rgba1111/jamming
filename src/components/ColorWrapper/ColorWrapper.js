@@ -1,25 +1,35 @@
-import React, { useRef } from 'react';
-import Color from 'color-thief-react';
+import React, { useState, useEffect } from 'react';
+import { Palette } from 'color-thief-react';
 import './ColorWrapper.css';
 
 export default function ColorWrapper({ imgSource, children }) {
-  const previousColorRef = useRef(null);
-  
-  return (
-    <Color src={imgSource} crossOrigin="anonymous" format="hex">
-      {({ data, loading }) => {
-        if (!loading && data !== previousColorRef.current) {
-          previousColorRef.current = data;
-        }
+  const [palette, setPalette] = useState([]);
+  const [isPaletteLoading, setIsPaletteLoading] = useState(true);
 
-        return (
-        <div className='baseColor'>
-          <div className='colorWrap' style={{ backgroundColor: loading ? previousColorRef.current : data }}>
-            {children}
-          </div>
-        </div>
-        );
-      }}
-    </Color>
+  const DEFAULT_BACKGROUND_STYLE = { background: 'linear-gradient(#1A1D23, var(--background))' };
+
+  const getGradientStyle = (colors) => {
+    if (colors && colors.length >= 2) {
+      return {
+        background: `linear-gradient(${colors[0]}, ${colors[1]}, var(--background))`,
+        animation: 'fadeGradientIn 1.5s ease-in-out'
+      };
+    }
+    return DEFAULT_BACKGROUND_STYLE;
+  };
+
+  return (
+    <>
+      <Palette src={imgSource} colorCount={5} format="hex" crossOrigin="anonymous">
+        {({ data, loading, error }) => {
+          let gradientStyle = loading || !data
+            ? DEFAULT_BACKGROUND_STYLE
+            : getGradientStyle(data);
+
+          return <div className='colorWrap' style={gradientStyle}>{children}</div>;
+        }}
+      </Palette>
+
+    </>
   );
 }

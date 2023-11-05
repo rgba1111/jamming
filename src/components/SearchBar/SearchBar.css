@@ -1,14 +1,21 @@
+.stickySearch{
+  position: sticky;
+  top: 0;
+  padding: .5rem 0 .5rem 0;
+  z-index: 16;
+  background-color: var(--background);
+  transition: all .6s ease-in-out;
+}
+
 .searchInput{
     width: 100%;
     display: flex;
-
     align-items: center;
 }
 
 .searchBar{
     width: 100%;
 }
-
 .resetButton{
     border-radius: 0.3rem;
     width: 2.3rem;

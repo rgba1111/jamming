@@ -22,6 +22,47 @@ export default function SearchBar(props) {
     onSearch(term);
   }
 
+  function getOffsetTop(elem) {
+    var offsetTop = 0;
+    do {
+      if (!isNaN(elem.offsetTop)) {
+        offsetTop += elem.offsetTop;
+      }
+    } while (elem = elem.offsetParent);
+    return offsetTop;
+  }
+  
+  window.addEventListener('scroll', function() {
+    var element = document.querySelector('.stickySearch');
+    
+    var stopElement_idle = document.querySelector('.stopElement_idle');
+
+    var stopElement_active = document.querySelector('.searchResultsWrap');
+
+    if (stopElement_idle) {
+      console.log(stopElement_idle);
+      var stopPoint_idle = getOffsetTop(stopElement_idle); 
+  
+      if (window.scrollY > stopPoint_idle) {
+        element.style.top = (-100) + 'px';
+      } else {
+        element.style.position = 'sticky';
+        element.style.top = 0;
+      }
+    }
+    if (stopElement_active) {
+      var stopPoint = getOffsetTop(stopElement_active) + 180; 
+  
+      if (window.scrollY > stopPoint) {
+        element.style.top = (-100) + 'px';
+      } else {
+        element.style.position = 'sticky';
+        element.style.top = 0;
+      }
+    }
+  });
+
+
 
   return (
     <>
@@ -29,7 +70,7 @@ export default function SearchBar(props) {
         <div className="staticIcon" id="searchIcon"></div>
         <h2>Find songs</h2>
       </div>
-      <form onSubmit={handleSubmit}>
+      <form className="stickySearch" onSubmit={handleSubmit}>
         <div className="searchInput">
           <input
             className="SearchBar"
@@ -47,11 +88,9 @@ export default function SearchBar(props) {
         </div>
 
         {/* button to manually submit search */}
-
         {/* {term.length > 0 ? (
           <button className="cta" type="submit">Search Songs</button>
         ) : (
-
           <button disabled className="cta" type="submit">Search Songs</button>
         )} */}
       </form>

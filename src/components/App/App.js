@@ -9,10 +9,6 @@ import ColorWrapper from '../ColorWrapper/ColorWrapper';
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import 'react-perfect-scrollbar/dist/css/styles.css';
 
-/**
- * The main component of the Jamming app.
- * @returns {JSX.Element} The App component JSX element.
- */
 export default function App() {
   const [results, setResults] = useState([]);
   const [playlist, setPlaylist] = useState([]);
@@ -26,11 +22,7 @@ export default function App() {
   const [wasAdded, setWasAdded] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
-
   const [imgSource, setImgSource] = useState('');
-
-  // const Loading = () => <div>Loading...</div>;
-
 
   const onAddTrack = (track) => {
     if (!addedTrackIds.includes(track.id)) {
@@ -43,7 +35,6 @@ export default function App() {
       console.log("Track is already in the playlist!");
     }
   };
-
 
   const onRemoveTrack = (track) => {
     if (addedTrackIds.includes(track.id)) {
@@ -88,10 +79,6 @@ export default function App() {
     fetchData();
   }, []);
 
-  /**
-   * Searches for tracks using the Spotify API and updates the results state.
-   * @param {string} term - The search term.
-   */
   const onSearch = (term) => {
     if (!accessToken || term.length < 1) {
       console.log('Access token not available. Search term too short or empty.');
@@ -126,7 +113,6 @@ export default function App() {
     setIsFlex('flexPlaceholder');
   }
 
-
   const onClearPlaylist = () => {
     setPlaylist([]);
     setAddedTrackIds([]);
@@ -142,9 +128,8 @@ export default function App() {
     savePlaylist(name, trackURIs).then(() => {
       setPlaylist([]);
       setAddedTrackIds([]);
-      setName('Name your playlist'); // Resetting the name state
-      setChangedName(false); // Resetting the changedName state to false
-      // setResults([]);
+      setName('Name your playlist');
+      setChangedName(false);
       alert(`${name} saved to your account!`);
       nameInputRef.current.value = '';
       setAddedTrackIds([]);
@@ -152,6 +137,7 @@ export default function App() {
       setImgSource('');
     });
   };
+
 
   return (
     <>
@@ -162,25 +148,20 @@ export default function App() {
         <div className="intro">
           <p>Find your favorite songs, add them to a playlist <br></br>and save the playlist to your Spotify account.</p>
         </div>
-        <PerfectScrollbar>
-          <div className="wrap">
-            <SearchBar onSearch={onSearch} inputRef={nameInputRef} onClearSearch={onClearSearch} setPlaceholder={setPlaceholder} />
-            <div className='scrollContainer'>
-              <PerfectScrollbar>
-                <div className='trackListContainer'>
-                  <SearchResults results={results} onAddTrack={onAddTrack} placeholder={placeholder} isFlex={isFlex} addedTrackIds={addedTrackIds} wasAdded={wasAdded} />
-                </div>
-              </PerfectScrollbar>
+        <SearchBar onSearch={onSearch} inputRef={nameInputRef} onClearSearch={onClearSearch} setPlaceholder={setPlaceholder} />
+        <div className='scrollContainer'>
+          <PerfectScrollbar>
+            <div className='trackListContainer'>
+              <SearchResults results={results} onAddTrack={onAddTrack} placeholder={placeholder} isFlex={isFlex} addedTrackIds={addedTrackIds} wasAdded={wasAdded} />
             </div>
-            <div className='blurContainer'>
-              <ColorWrapper imgSource={imgSource}></ColorWrapper>
-              <Playlist playlist={playlist} onRemoveTrack={onRemoveTrack} onNameChange={onUpdatePlaylistName} name={name} onSavePlaylist={onSavePlaylist} changedName={changedName} inputRef={nameInputRef} onClearPlaylist={onClearPlaylist} />
-            </div>
-
-          </div>
-        </PerfectScrollbar>
+          </PerfectScrollbar>
+        </div>
+        <div className='overflowWrapper'>
+        <ColorWrapper imgSource={imgSource}></ColorWrapper>
+          <Playlist imgSource={imgSource} playlist={playlist} onRemoveTrack={onRemoveTrack} onNameChange={onUpdatePlaylistName} name={name} onSavePlaylist={onSavePlaylist} changedName={changedName} inputRef={nameInputRef} onClearPlaylist={onClearPlaylist}/>
       </div>
+        </div>
+
     </>
   );
-  
 }
