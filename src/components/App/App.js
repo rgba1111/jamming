@@ -13,7 +13,7 @@ export default function App() {
   const [results, setResults] = useState([]);
   const [playlist, setPlaylist] = useState([]);
   const [addedTrackIds, setAddedTrackIds] = useState([]);
-  const [name, setName] = useState('My playlist');
+  const [name, setName] = useState('My Playlist');
   const [accessToken, setAccessToken] = useState('');
   const [changedName, setChangedName] = useState(false);
   const nameInputRef = useRef(null);
@@ -128,7 +128,7 @@ export default function App() {
     savePlaylist(name, trackURIs).then(() => {
       setPlaylist([]);
       setAddedTrackIds([]);
-      setName('Name your playlist');
+      setName('My Playlist');
       setChangedName(false);
       alert(`${name} saved to your account!`);
       nameInputRef.current.value = '';
