@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import TrackList from "../TrackList/TrackList";
-import PerfectScrollbar from 'react-perfect-scrollbar'
 
 export default function SearchResults(props) {
   const { results, onAddTrack, placeholder, isFlex, wasAdded} = props; 

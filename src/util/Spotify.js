@@ -49,6 +49,7 @@ export const search = async (term) => {
             album: track.album.name,
             uri: track.uri,
             image: track.album.images[1].url,
+            preview: track.preview_url,
         }));
     } catch (error) {
         console.error('Error during search:', error);
