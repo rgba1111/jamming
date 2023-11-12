@@ -10,6 +10,40 @@
     background-color: var(--overlay);
 }
 
+.playableTrack:hover::before{
+    content: '▶︎';
+    color: white;
+    width: 3rem;
+    height: 3rem;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.playingTrack:hover::before{
+    content: '⏸';
+    font-size: 1.5rem;
+    color: white;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 110px;
+    background-color: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 1000;
+    cursor: pointer;
+    scale: 1;
+}
+
+
 .playListTrack{
     animation: unfold 2.4s ease-out 1;
 }
@@ -100,6 +134,41 @@
     transition: all .2s ease-in-out;
 }
 
+.isPlaying{
+    transition: all .2s ease-in-out;
+    animation: rotate 4s linear infinite;
+    border-radius: 100px;
+    box-shadow: var(--background) 0px 7px 29px 0px;
+    scale: .9;
+}
+
+@keyframes fadeBorder {
+    0% {
+        border-color: var(--green);
+    }
+    50% {
+        border-color: var(--background);
+    }
+    100% {
+        border-color: var(--green);
+    }   
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.isNotPlaying{
+    transition: all .2s ease-in-out;
+    transform: rotate(0deg);
+    box-shadow: none;
+    scale: 1;
+}
 
 @keyframes bg-fade {
     0% {

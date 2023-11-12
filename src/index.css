@@ -140,6 +140,7 @@ button:disabled{
   font-size: 1rem;
   animation-delay: 2s;
   padding: .5rem 1rem;
+  cursor: pointer;
 }
 
 .textButton:hover{

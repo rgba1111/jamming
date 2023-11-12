@@ -1,13 +1,13 @@
 import React, { useRef } from "react";
 import Track from "../Track/Track";
 import "./TrackList.css";
-import { Tooltip } from 'react-tooltip'
+import { Tooltip } from 'react-tooltip';
 
 export default function TrackList(props) {
-  const { tracks, onAddTrack, onRemoveTrack, isRemoval, wasAdded } = props;
+  const { tracks, onAddTrack, onRemoveTrack, isRemoval, wasAdded, playTrack, currentPlaying } = props;
   const trackListRef = useRef(null);
-
   const tracksToDisplay = tracks ?? [];
+
   return (
     <div>
       {tracksToDisplay.length > 0 ? (
@@ -20,6 +20,8 @@ export default function TrackList(props) {
               onRemoveTrack={onRemoveTrack}
               isRemoval={isRemoval}
               wasAdded={track.wasAdded}
+              isPlaying={currentPlaying === track.id}
+              playTrack={() => playTrack(track.id, track.preview)}
             />
           ))}
         </div>

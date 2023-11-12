@@ -24,6 +24,39 @@ export default function App() {
 
   const [imgSource, setImgSource] = useState('');
 
+  const [currentPlaying, setCurrentPlaying] = useState(null);
+  const audioRef = useRef(new Audio());
+
+  const playTrack = (trackId, trackPreviewUrl) => {
+    if (currentPlaying !== trackId) {
+      audioRef.current.pause();
+      audioRef.current.src = trackPreviewUrl;
+      audioRef.current.play().then(() => {
+        setCurrentPlaying(trackId); // Update the currently playing track
+      }).catch(e => {
+        console.error("Error playing the track:", e);
+        setCurrentPlaying(null); // Reset if there's an error
+      });
+    } else {
+      // Toggle play/pause for the same track
+      if (audioRef.current.paused) {
+        audioRef.current.play();
+      } else {
+        audioRef.current.pause();
+        setCurrentPlaying(null); // Reset the currently playing track if paused
+      }
+    }
+    audioRef.current.addEventListener('ended', () => {
+      setCurrentPlaying(null);
+    });
+  };
+
+
+  useEffect(() => {
+    return () => audioRef.current.pause();
+  }, []);
+
+
   const onAddTrack = (track) => {
     if (!addedTrackIds.includes(track.id)) {
       const updatedTrack = { ...track, wasAdded: true };
@@ -152,15 +185,18 @@ export default function App() {
         <div className='scrollContainer'>
           <PerfectScrollbar>
             <div className='trackListContainer'>
-              <SearchResults results={results} onAddTrack={onAddTrack} placeholder={placeholder} isFlex={isFlex} addedTrackIds={addedTrackIds} wasAdded={wasAdded} />
+              <SearchResults results={results} onAddTrack={onAddTrack} playTrack={playTrack}
+                placeholder={placeholder} isFlex={isFlex} addedTrackIds={addedTrackIds} wasAdded={wasAdded} currentPlaying={currentPlaying}
+              />
             </div>
           </PerfectScrollbar>
         </div>
         <div className='overflowWrapper'>
-        <ColorWrapper imgSource={imgSource}></ColorWrapper>
-          <Playlist imgSource={imgSource} playlist={playlist} onRemoveTrack={onRemoveTrack} onNameChange={onUpdatePlaylistName} name={name} onSavePlaylist={onSavePlaylist} changedName={changedName} inputRef={nameInputRef} onClearPlaylist={onClearPlaylist}/>
-      </div>
+          <ColorWrapper imgSource={imgSource}></ColorWrapper>
+          <Playlist imgSource={imgSource} playlist={playlist} onRemoveTrack={onRemoveTrack} playTrack={playTrack} currentPlaying={currentPlaying}
+            onNameChange={onUpdatePlaylistName} name={name} onSavePlaylist={onSavePlaylist} changedName={changedName} inputRef={nameInputRef} onClearPlaylist={onClearPlaylist} />
         </div>
+      </div>
 
     </>
   );

@@ -6,7 +6,7 @@ import { Tooltip } from 'react-tooltip'
 
 export default function Playlist(props) {
 
-    const { playlist, onRemoveTrack, onNameChange, name, onSavePlaylist, changedName, inputRef, onClearPlaylist, imgSource } = props;
+    const { playlist, onRemoveTrack, onNameChange, name, onSavePlaylist, changedName, inputRef, onClearPlaylist, imgSource, playTrack, currentPlaying } = props;
 
     const handleNameChange = (e) => {
         e.preventDefault();
@@ -39,15 +39,15 @@ export default function Playlist(props) {
 
     window.addEventListener('scroll', function () {
         var element = document.querySelector('.playlistBar');
-        
-        var someThreshold = element.offsetTop+32; 
+
+        var someThreshold = element.offsetTop + 32;
         if (window.scrollY > someThreshold) {
             element.style.backgroundColor = 'var(--background)';
         } else {
             element.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
         }
     });
-    
+
     return (
         <>
             <div className="playlist">
@@ -124,7 +124,8 @@ export default function Playlist(props) {
                     </div>
                 </div>
                 <div className="playlistContainer">
-                    <TrackList tracks={playlist} onRemoveTrack={onRemoveTrack} isRemoval={true} isPlaylistTrack={"playListTrack"} />
+                    <TrackList tracks={playlist} onRemoveTrack={onRemoveTrack} isRemoval={true} playTrack={playTrack} isPlaylistTrack={"playListTrack"} currentPlaying={currentPlaying}
+                    />
                 </div>
             </div>
 
