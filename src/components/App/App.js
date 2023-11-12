@@ -83,11 +83,6 @@ export default function App() {
     }
   };
 
-
-  /**
-   * Updates the name state of the playlist.
-   * @param {string} name - The new name for the playlist.
-   */
   const onUpdatePlaylistName = (name) => {
     if (name.length < 1) {
       setName('My playlist');

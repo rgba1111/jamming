@@ -127,6 +127,7 @@
     height: 3rem;
     background-color: var(--overlay);
     animation: bg-fade 1s ease-in-out;
+    cursor: pointer;
 }
 
 .added{
