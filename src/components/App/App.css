@@ -32,8 +32,7 @@
 }
 
 .trackListContainer{
-  height: fit-content;
-  max-height: 16.75rem;
+  max-height: 15.45rem;
 }
 
 .intro{
