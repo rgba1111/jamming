@@ -105,6 +105,11 @@
     margin: 0;
 }
 
+#playlistName-tooltip{
+    margin-top: 1.25rem !important;
+}
+
+
 @keyframes heartbeat {
     0% {
         transform: scale(1);
