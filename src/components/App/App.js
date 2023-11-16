@@ -5,8 +5,8 @@ import SearchResults from './../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 import { search, getAccessToken, savePlaylist } from '../../util/Spotify';
 import ColorWrapper from '../ColorWrapper/ColorWrapper';
+import toast, { Toaster } from 'react-hot-toast';
 
-import PerfectScrollbar from 'react-perfect-scrollbar'
 import 'react-perfect-scrollbar/dist/css/styles.css';
 
 export default function App() {
@@ -27,6 +27,9 @@ export default function App() {
   const [currentPlaying, setCurrentPlaying] = useState(null);
   const audioRef = useRef(new Audio());
 
+  const [addedSong, setAddedSong] = useState(false);
+  const [removedSong, setRemovedSong] = useState(false);
+
   const playTrack = (trackId, trackPreviewUrl) => {
     if (currentPlaying !== trackId) {
       audioRef.current.pause();
@@ -35,6 +38,7 @@ export default function App() {
         setCurrentPlaying(trackId); // Update the currently playing track
       }).catch(e => {
         console.error("Error playing the track:", e);
+        toast.error("Error playing the track!");
         setCurrentPlaying(null); // Reset if there's an error
       });
     } else {
@@ -64,6 +68,8 @@ export default function App() {
       setAddedTrackIds(prevIds => [...prevIds, updatedTrack.id]);
       setResults(prevResults => prevResults.map(item => item.id === track.id ? updatedTrack : item));
       setImgSource(track.image);
+      setAddedSong(true);
+      setRemovedSong(false);
     } else {
       console.log("Track is already in the playlist!");
     }
@@ -75,6 +81,8 @@ export default function App() {
       setPlaylist(prevPlaylist => prevPlaylist.filter(item => item.id !== track.id));
       setAddedTrackIds(prevIds => prevIds.filter(id => id !== track.id));
       setResults(prevResults => prevResults.map(item => item.id === track.id ? updatedTrack : item));
+      setAddedSong(false);
+      setRemovedSong(true);
       if (playlist.length === 1) {
         setImgSource('');
       }
@@ -101,6 +109,7 @@ export default function App() {
         setAccessToken(token);
       } catch (error) {
         console.error('Error retrieving access token:', error);
+        toast.error("Error retrieving access token!");
       }
     };
 
@@ -133,6 +142,7 @@ export default function App() {
       })
       .catch((error) => {
         console.error('Error during search:', error);
+        toast.error("Error during search!");
       });
   };
 
@@ -152,13 +162,20 @@ export default function App() {
 
   const onSavePlaylist = () => {
     const trackURIs = playlist.map(track => `spotify:track:${track.id}`);
-    console.log(trackURIs);
     savePlaylist(name, trackURIs).then(() => {
       setPlaylist([]);
       setAddedTrackIds([]);
       setName('My Playlist');
       setChangedName(false);
-      alert(`${name} saved to your account!`);
+
+      toast.success(`${name} saved to Spotify!`);
+
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
+      });
+
       nameInputRef.current.value = '';
       setAddedTrackIds([]);
       playlist.forEach(track => onRemoveTrack(track));
@@ -169,7 +186,25 @@ export default function App() {
 
   return (
     <>
+      <Toaster
+        toastOptions={{
+          success: {
+            iconTheme: {
+              primary: 'var(--white)',
+              secondary: 'black',
+            },
+            style: {
+              background: 'var(--green)',
+              border: '1px solid var(--overlay)',
+              padding: '16px',
+              color: 'var(--primaryText)',
+              boxShadow: '0',
+            },
+          },
+        }}
+      />
       <div className="App">
+
         <div className="header">
           <h1>jammming</h1>
         </div>
@@ -178,17 +213,17 @@ export default function App() {
         </div>
         <SearchBar onSearch={onSearch} inputRef={nameInputRef} onClearSearch={onClearSearch} setPlaceholder={setPlaceholder} />
         <div className='scrollContainer'>
-          <PerfectScrollbar>
-            <div className='trackListContainer'>
-              <SearchResults results={results} onAddTrack={onAddTrack} playTrack={playTrack}
-                placeholder={placeholder} isFlex={isFlex} addedTrackIds={addedTrackIds} wasAdded={wasAdded} currentPlaying={currentPlaying}
-              />
-            </div>
-          </PerfectScrollbar>
+
+          <div className='trackListContainer'>
+            <SearchResults results={results} onAddTrack={onAddTrack} playTrack={playTrack}
+              placeholder={placeholder} isFlex={isFlex} addedTrackIds={addedTrackIds} wasAdded={wasAdded} currentPlaying={currentPlaying}
+            />
+          </div>
+
         </div>
         <div className='overflowWrapper'>
           <ColorWrapper imgSource={imgSource}></ColorWrapper>
-          <Playlist imgSource={imgSource} playlist={playlist} onRemoveTrack={onRemoveTrack} playTrack={playTrack} currentPlaying={currentPlaying}
+          <Playlist imgSource={imgSource} playlist={playlist} addedSong={addedSong} removedSong={removedSong} onRemoveTrack={onRemoveTrack} playTrack={playTrack} currentPlaying={currentPlaying}
             onNameChange={onUpdatePlaylistName} name={name} onSavePlaylist={onSavePlaylist} changedName={changedName} inputRef={nameInputRef} onClearPlaylist={onClearPlaylist} />
         </div>
       </div>

@@ -57,14 +57,6 @@ export const search = async (term) => {
     }
 };
 
-/**
- * Saves a playlist to the user's Spotify account.
- * @async
- * @param {string} name - The name of the playlist to be created.
- * @param {string[]} trackUris - An array of Spotify track URIs to be added to the playlist.
- * @returns {Promise<Object>} - A Promise that resolves with the JSON response from the Spotify API.
- * @throws {Error} - If any of the API requests fail, an error is thrown with a descriptive message.
- */
 export const savePlaylist = async (name, trackUris) => {
     try {
         const accessToken = await getAccessToken();

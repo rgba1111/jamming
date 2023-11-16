@@ -38,7 +38,15 @@
   border-radius: 0.75rem !important;
   background-color: var(--input);
   padding: 0 !important;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
+
+
+.scrollContainer::-webkit-scrollbar-corner {
+  display: hidden;
+  height: 0;
+ }
 .ps__rail-y{
   margin: 4px 2px !important;
   background-color: transparent !important;
@@ -266,13 +274,18 @@ form{
   background: url('./assets/icons/play.svg') no-repeat;
 }
 
-#heartIconOutline {
-  background: url('./assets/icons/heart-outline.svg') no-repeat;
-}
-#heartIconFilled {
+#heartIconFilledRemoved {
   background: url('./assets/icons/heart-filled.svg') no-repeat;
 }
-
+#heartIconOutlineStatic {
+  background: url('./assets/icons/heart-outline.svg') no-repeat;
+}
+#heartIconFilledAdded {
+  background: url('./assets/icons/heart-filled.svg') no-repeat;
+}
+#heartIconFilledStatic {
+  background: url('./assets/icons/heart-filled.svg') no-repeat;
+}
 #plusIcon {
   background: url('./assets/icons/plus.svg') no-repeat;
 }

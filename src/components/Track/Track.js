@@ -47,7 +47,7 @@ const Track = ({ track, playTrack, onAddTrack, onRemoveTrack, isRemoval, wasAdde
       );
     } else if (wasAdded) {
       tooltipId = "checkIcon-tooltip";
-      tooltipContent = "Already added";
+      tooltipContent = "Added";
       return (
         <button
           disabled

@@ -9,7 +9,7 @@ export default function TrackList(props) {
   const tracksToDisplay = tracks ?? [];
 
   return (
-    <div>
+    <div className="wrapper">
       {tracksToDisplay.length > 0 ? (
         <div className="TrackList" ref={trackListRef}>
           {tracksToDisplay.map((track) => (

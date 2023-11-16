@@ -33,13 +33,13 @@
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-
+#playlistNameWrap{
+    margin-bottom: 0;
+}
 .playlistBar {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0.5rem 1rem .5rem 1rem;
-    justify-content: space-between;
+    flex-direction: column;
+    padding: 0rem 1rem .5rem 1rem;
     margin: 0;
     width: 100%;
     position: sticky;
@@ -50,6 +50,27 @@
     transition: background-color .2s ease-out;
 }
 
+.verticalWrap{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nameBanner{
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    transition: background-color .2s ease-out;
+    padding: .5rem;
+    cursor: pointer;
+    height: 2rem;
+}
+
+.nameBanner p{
+    font-size: .9rem;
+    color: var(--secondaryText);
+}
 
 .testPlaceholder {
     height: 80vh;
@@ -68,7 +89,7 @@
     font-weight: 600;
     transition: all 0.2s ease-in-out;
     z-index: 1;
-    padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+    padding: 1.5rem 1.5rem 0.5rem 1.5rem;
 }
 
 .playlistName::placeholder {
@@ -129,6 +150,43 @@
     }
 }
 
-#heartIconFilled {
+#heartIconFilledAdded {
     animation: heartbeat 1s ease-in-out 2;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-4px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(4px);
+    }
+}
+
+#heartIconFilledStatic {
+    animation: shake 1s ease-in-out 1;
+}
+
+
+
+@keyframes sad {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+
+#heartIconFilledRemoved {
+    animation: sad 1s ease-in-out 1;
 }
