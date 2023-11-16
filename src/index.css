@@ -258,6 +258,16 @@ form{
   /* box-shadow: 0px 16px 48px 0px rgba(0, 0, 0, 0.22) !important; */
 }
 
+.footer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0 2rem 0;
+  padding: 1rem;
+}
+
 #flexPlaceholder{
   animation: fold .4s ease-out 1;
 }

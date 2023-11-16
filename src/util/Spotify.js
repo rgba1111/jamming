@@ -12,16 +12,27 @@ export const getAccessToken = () => {
 
     if (urlAccessToken && urlExpiresIn) {
         accessToken = urlAccessToken[1];
-        const expires_in = Number(urlExpiresIn[1]);
+        const expiresIn = Number(urlExpiresIn[1]);
 
-        window.setTimeout(() => (accessToken = ''), expires_in * 1000);
+        window.setTimeout(() => {
+            accessToken = '';
+            localStorage.removeItem('accessToken'); // Clear token from localStorage when it expires
+        }, expiresIn * 1000);
+
+        localStorage.setItem('accessToken', accessToken); // Save token to localStorage
         window.history.pushState('Access Token', null, '/');
+
         return Promise.resolve(accessToken);
     } else {
-        const redirect = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
-        window.location = redirect;
-        return new Promise(() => { });
+        return;
     }
+};
+
+
+export const signIn = () => {
+    const redirect = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
+    window.location = redirect;
+    return new Promise(() => { });
 };
 
 export const search = async (term) => {
@@ -104,5 +115,43 @@ export const savePlaylist = async (name, trackUris) => {
     } catch (error) {
         console.error("Error in savePlaylist:", error);
         throw error;
+    }
+};
+
+export const getLastPlayedTracks = async () => {
+    try {
+        const accessToken = await getAccessToken();
+        const response = await fetch(`https://api.spotify.com/v1/me/player/recently-played?limit=10`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch recently played tracks from Spotify API');
+        }
+
+        const jsonResponse = await response.json();
+
+        if (!jsonResponse.items) {
+            return [];
+        }
+
+        console.log(jsonResponse);
+        return jsonResponse.items.map(item => {
+            const track = item.track;
+            return {
+                id: track.id,
+                name: track.name,
+                artist: track.artists[0].name,
+                album: track.album.name,
+                uri: track.uri,
+                image: track.album.images[1].url,
+                preview: track.preview_url,
+            };
+        });
+    } catch (error) {
+        console.error('Error during fetching recently played songs:', error);
+        return [];
     }
 };

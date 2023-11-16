@@ -3,7 +3,7 @@ import './App.css';
 import SearchBar from './../SearchBar/SearchBar';
 import SearchResults from './../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
-import { search, getAccessToken, savePlaylist } from '../../util/Spotify';
+import { search, getAccessToken, savePlaylist, signIn, getLastPlayedTracks } from '../../util/Spotify';
 import ColorWrapper from '../ColorWrapper/ColorWrapper';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -29,6 +29,8 @@ export default function App() {
 
   const [addedSong, setAddedSong] = useState(false);
   const [removedSong, setRemovedSong] = useState(false);
+
+  const [signedIn, setSignedIn] = useState(false);
 
   const playTrack = (trackId, trackPreviewUrl) => {
     if (currentPlaying !== trackId) {
@@ -103,19 +105,31 @@ export default function App() {
   };
 
   useEffect(() => {
+    const storedToken = localStorage.getItem('accessToken');
+  
     const fetchData = async () => {
       try {
         const token = await getAccessToken();
         setAccessToken(token);
+        if (token) {
+          localStorage.setItem('accessToken', token); // Save the token to localStorage
+          setSignedIn(true);
+          getLastPlayedTracks();
+        }
       } catch (error) {
         console.error('Error retrieving access token:', error);
         toast.error("Error retrieving access token!");
       }
     };
 
-    fetchData();
+    if (storedToken) {
+      setAccessToken(storedToken);
+      setSignedIn(true);
+    } else {
+      fetchData();
+    }
   }, []);
-
+  
   const onSearch = (term) => {
     if (!accessToken || term.length < 1) {
       console.log('Access token not available. Search term too short or empty.');
@@ -184,6 +198,31 @@ export default function App() {
   };
 
 
+  const signOut = () => {
+    const currentToken = localStorage.getItem('accessToken');
+    if (currentToken) {
+      localStorage.removeItem('accessToken');
+    }
+    setAccessToken('');
+    setSignedIn(false);
+
+    setPlaylist([]);
+    setAddedTrackIds([]);
+    setName('My Playlist');
+    setChangedName(false);
+    setAddedTrackIds([]);
+    setImgSource('');
+    setResults([]);
+    setIsFlex('flexPlaceholder');
+
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+  });
+  };
+  
+
   return (
     <>
       <Toaster
@@ -203,8 +242,24 @@ export default function App() {
           },
         }}
       />
+  
+      {!signedIn && (
+        <div className='authOverlay'>
+          <div className='authContainer'>
+            <div className='authHeader'>
+              <h1>jammming</h1>
+            </div>
+            <div className='authIntro'>
+              <p>Discover new music with Spotify, create playlists and save them to your account.</p>
+            </div>
+            <div className='authButton'>
+              <button onClick={signIn}>Log in with Spotify</button>
+            </div>
+          </div>
+        </div>
+      )}
+  
       <div className="App">
-
         <div className="header">
           <h1>jammming</h1>
         </div>
@@ -213,13 +268,11 @@ export default function App() {
         </div>
         <SearchBar onSearch={onSearch} inputRef={nameInputRef} onClearSearch={onClearSearch} setPlaceholder={setPlaceholder} />
         <div className='scrollContainer'>
-
           <div className='trackListContainer'>
             <SearchResults results={results} onAddTrack={onAddTrack} playTrack={playTrack}
               placeholder={placeholder} isFlex={isFlex} addedTrackIds={addedTrackIds} wasAdded={wasAdded} currentPlaying={currentPlaying}
             />
           </div>
-
         </div>
         <div className='overflowWrapper'>
           <ColorWrapper imgSource={imgSource}></ColorWrapper>
@@ -227,7 +280,11 @@ export default function App() {
             onNameChange={onUpdatePlaylistName} name={name} onSavePlaylist={onSavePlaylist} changedName={changedName} inputRef={nameInputRef} onClearPlaylist={onClearPlaylist} />
         </div>
       </div>
-
+      <div className='footer'>
+        <button className='textButton' onClick={signOut}>Sign Out</button>
+      </div>
     </>
   );
+  
+  
 }

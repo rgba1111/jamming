@@ -6,28 +6,25 @@
 .App {
   margin: 2rem auto 0 auto;
   max-width: 36rem;
-  padding: 1rem 1.5rem 0 1.5rem;
-  border-radius: 3rem 3rem 0 0 ;
+  padding: 1rem 1.5rem 1.5rem 1.5rem;
+  border-radius: 3rem 3rem;
   min-height: 120vh;
   height: 100%;
   border: 1px solid var(--foreground);
-  border-bottom: none;
-  scale: 1;
-  opacity: 1;
-  transition: all 0.8s ease-in-out;
-  animation: fadeIn .6s ease-in-out .2s;
+  transform: scale(.99);
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+  animation: fadeIn .6s ease-in-out 1s forwards;
 }
 
 @keyframes fadeIn {
   0% {
     opacity: 0;
-    transform: translateY(1rem);
-    scale: .99;
+    transform: translateY(1rem) scale(.99);
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
-    scale: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -38,4 +35,78 @@
 .intro{
   text-align: center;
   margin: 2rem 0 3rem 0;
+}
+
+.authOverlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  animation: dissolve .6s ease-out forwards;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes dissolve {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.authContainer{
+  scale: 1;
+  opacity: 1;
+  z-index: 100;
+  max-width: 24rem;
+  padding: 1.5rem;
+}
+
+.authHeader{ 
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.authHeader h1{
+  opacity: 1;
+  pointer-events: none;
+  user-select: none;
+  font-size: 3.25rem;
+}
+
+.authIntro{
+  text-align: center;
+  margin-top: 2rem;
+  opacity: .8;
+}
+
+.authButton{ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: .25rem;
+  padding: 1rem;
+  scale: 1;
+}
+
+.authButton button{
+  width: 100%;
+  color: var(--black);
+  text-decoration: none;
+}
+.authButton button a{
+  color: var(--black);
+  text-decoration: none;
 }
