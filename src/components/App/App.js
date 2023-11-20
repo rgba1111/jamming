@@ -136,7 +136,7 @@ export default function App() {
   
   const onSearch = (term) => {
     if (!accessToken || term.length < 1) {
-      console.log('Access token not available. Search term too short or empty.');
+      if(!accessToken) {console.log('Access token not available.'); }
       return;
     }
 
@@ -269,7 +269,7 @@ export default function App() {
               <h1>jammming</h1>
             </div>
             <div className='authIntro'>
-              <p>Discover new music with Spotify, create playlists and save them to your account.</p>
+              <p>Discover new music, create playlists and save them to your Spotify account.</p>
             </div>
             <div className='authButton'>
               <button onClick={signIn}>Log in with Spotify</button>
@@ -283,7 +283,7 @@ export default function App() {
           <h1>jammming</h1>
         </div>
         <div className="intro">
-          <p>Find your favorite songs, add them to a playlist <br></br>and save the playlist to your Spotify account.</p>
+          <p>Search for songs, add them to a playlist <br></br>and save the playlist to Spotify.</p>
         </div>
         <SearchBar onSearch={onSearch} inputRef={nameInputRef} onClearSearch={onClearSearch} setPlaceholder={setPlaceholder} />
         <div className='scrollContainer'>

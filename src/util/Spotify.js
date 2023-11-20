@@ -140,7 +140,7 @@ export const getLastPlayedTracks = async () => {
 
         // Transform the items and ensure all accesses are safe
 
-        console.log(jsonResponse);
+        // console.log(jsonResponse);
         return jsonResponse.items.map(item => {
             const track = item.track;
             // Ensure the track, artists, and album are as expected
