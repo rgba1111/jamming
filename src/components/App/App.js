@@ -237,12 +237,10 @@ export default function App() {
         toast.error("Error fetching recently played tracks!");
       }
     };
-
-    // Check if access token is available and fetch recently played tracks
     if (accessToken) {
       fetchRecentlyPlayed();
     }
-  }, [accessToken]); // Dependency array includes accessToken
+  }, [accessToken]); 
 
 
   return (
