@@ -1,5 +1,5 @@
 const clientId = 'ee72e10436f1462884d9c54065e1782b';
-const redirectUri = 'http://localhost:3000/';
+const redirectUri = 'https://jammming-rgba1111.netlify.app/';
 let accessToken = '';
 
 export const getAccessToken = () => {
