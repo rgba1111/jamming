@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Playlist.css";
 import TrackList from "../TrackList/TrackList";
 import 'react-tooltip/dist/react-tooltip.css'
@@ -6,7 +6,7 @@ import { Tooltip } from 'react-tooltip'
 
 export default function Playlist(props) {
 
-    const { playlist, onRemoveTrack, onNameChange, name, onSavePlaylist, changedName, inputRef, onClearPlaylist, imgSource, playTrack, currentPlaying, addedSong, removedSong } = props;
+    const { playlist, onRemoveTrack, onNameChange, name, onSavePlaylist, changedName, inputRef, onClearPlaylist, playTrack, currentPlaying, addedSong, removedSong } = props;
 
 
     const handleNameChange = (e) => {

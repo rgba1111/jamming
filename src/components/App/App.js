@@ -14,7 +14,6 @@ import 'react-perfect-scrollbar/dist/css/styles.css';
 export default function App() {
   const [results, setResults] = useState([]);
   const [playlist, setPlaylist] = useState([]);
-  const [lastPlayedTracks, setlastPlayedTracks] = useState([]);
   
   const [addedTrackIds, setAddedTrackIds] = useState([]);
   const [name, setName] = useState('My playlist');
@@ -23,7 +22,7 @@ export default function App() {
   const nameInputRef = useRef(null);
   const [placeholder, setPlaceholder] = useState('Search for anything');
   const [isFlex, setIsFlex] = useState('');
-  const [wasAdded, setWasAdded] = useState(false);
+  const [wasAdded] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
   const [imgSource, setImgSource] = useState('');
@@ -290,7 +289,7 @@ export default function App() {
           <div className='trackListContainer'>
             <SearchResults results={results} onAddTrack={onAddTrack} playTrack={playTrack}
               placeholder={placeholder} isFlex={isFlex} addedTrackIds={addedTrackIds} wasAdded={wasAdded} currentPlaying={currentPlaying}
-              lastPlayedTracks={lastPlayedTracks}/>
+            />
           </div>
         </div>
         <div className='overflowWrapper'>
