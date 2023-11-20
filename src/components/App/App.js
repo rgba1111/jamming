@@ -133,18 +133,22 @@ export default function App() {
 
   const onSearch = (term) => {
     if (!accessToken || term.length < 1) {
-      if (!accessToken) { console.log('Access token not available.'); }
+      if (!accessToken) {
+        console.log('Access token not available.');
+      }
       return;
     }
 
-    setSearchTerm(term);
+    // Clear previously played tracks or any old search results
+    setResults([]);
+
+    // Perform the new search and update results
     search(term, accessToken)
       .then((results) => {
         if (results.length < 1) {
           setPlaceholder('No results. Try another search term!');
           return;
         } else {
-          setResults('');
           const updatedResults = results.map((track) => {
             if (addedTrackIds.includes(track.id)) {
               return { ...track, wasAdded: true };
