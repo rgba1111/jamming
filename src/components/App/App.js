@@ -3,7 +3,9 @@ import './App.css';
 import SearchBar from './../SearchBar/SearchBar';
 import SearchResults from './../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
+
 import { search, getAccessToken, savePlaylist, signIn, getLastPlayedTracks } from '../../util/Spotify';
+
 import ColorWrapper from '../ColorWrapper/ColorWrapper';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -12,6 +14,8 @@ import 'react-perfect-scrollbar/dist/css/styles.css';
 export default function App() {
   const [results, setResults] = useState([]);
   const [playlist, setPlaylist] = useState([]);
+  const [lastPlayedTracks, setlastPlayedTracks] = useState([]);
+  
   const [addedTrackIds, setAddedTrackIds] = useState([]);
   const [name, setName] = useState('My Playlist');
   const [accessToken, setAccessToken] = useState('');
@@ -104,6 +108,7 @@ export default function App() {
     }
   };
 
+
   useEffect(() => {
     const storedToken = localStorage.getItem('accessToken');
   
@@ -114,7 +119,6 @@ export default function App() {
         if (token) {
           localStorage.setItem('accessToken', token); // Save the token to localStorage
           setSignedIn(true);
-          getLastPlayedTracks();
         }
       } catch (error) {
         console.error('Error retrieving access token:', error);
@@ -137,7 +141,6 @@ export default function App() {
     }
 
     setSearchTerm(term);
-
     search(term, accessToken)
       .then((results) => {
         if (results.length < 1) {
@@ -159,6 +162,7 @@ export default function App() {
         toast.error("Error during search!");
       });
   };
+
 
   const onClearSearch = () => {
     setResults([]);
@@ -222,6 +226,24 @@ export default function App() {
   });
   };
   
+  useEffect(() => {
+    // Function to fetch and set recently played tracks
+    const fetchRecentlyPlayed = async () => {
+      try {
+        const tracks = await getLastPlayedTracks(accessToken);
+        setResults(tracks);
+      } catch (error) {
+        console.error("Error fetching recently played tracks:", error);
+        toast.error("Error fetching recently played tracks!");
+      }
+    };
+
+    // Check if access token is available and fetch recently played tracks
+    if (accessToken) {
+      fetchRecentlyPlayed();
+    }
+  }, [accessToken]); // Dependency array includes accessToken
+
 
   return (
     <>
@@ -242,7 +264,6 @@ export default function App() {
           },
         }}
       />
-  
       {!signedIn && (
         <div className='authOverlay'>
           <div className='authContainer'>
@@ -271,7 +292,7 @@ export default function App() {
           <div className='trackListContainer'>
             <SearchResults results={results} onAddTrack={onAddTrack} playTrack={playTrack}
               placeholder={placeholder} isFlex={isFlex} addedTrackIds={addedTrackIds} wasAdded={wasAdded} currentPlaying={currentPlaying}
-            />
+              lastPlayedTracks={lastPlayedTracks}/>
           </div>
         </div>
         <div className='overflowWrapper'>

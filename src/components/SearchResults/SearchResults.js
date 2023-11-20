@@ -2,7 +2,7 @@ import React from "react";
 import TrackList from "../TrackList/TrackList";
 
 export default function SearchResults(props) {
-  const { results, onAddTrack, placeholder, isFlex, wasAdded, playTrack, currentPlaying } = props;
+  const { results, lastPlayedTracks , onAddTrack, placeholder, isFlex, wasAdded, playTrack, currentPlaying } = props;
   return (
     <div className="searchResultsAnchor">
       {results.length > 0 ? (

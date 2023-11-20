@@ -30,7 +30,7 @@ export const getAccessToken = () => {
 
 
 export const signIn = () => {
-    const redirect = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
+    const redirect = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public%20user-read-recently-played&redirect_uri=${redirectUri}`;
     window.location = redirect;
     return new Promise(() => { });
 };
@@ -45,7 +45,7 @@ export const search = async (term) => {
         });
 
         if (!response.ok) {
-            throw new Error('Failed to fetch data from Spotify API');
+            throw new Error('Failed to fetch data via Search from Spotify API');
         }
 
         const jsonResponse = await response.json();
@@ -111,17 +111,17 @@ export const savePlaylist = async (name, trackUris) => {
         }
 
         const addTracksJsonResponse = await addTracksResponse.json();
-        return addTracksJsonResponse;
     } catch (error) {
         console.error("Error in savePlaylist:", error);
         throw error;
     }
 };
 
+
 export const getLastPlayedTracks = async () => {
     try {
         const accessToken = await getAccessToken();
-        const response = await fetch(`https://api.spotify.com/v1/me/player/recently-played?limit=10`, {
+        const response = await fetch(`https://api.spotify.com/v1/me/player/recently-played?`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
@@ -137,19 +137,31 @@ export const getLastPlayedTracks = async () => {
             return [];
         }
 
+
+        // Transform the items and ensure all accesses are safe
+
         console.log(jsonResponse);
         return jsonResponse.items.map(item => {
             const track = item.track;
+            // Ensure the track, artists, and album are as expected
+            if (!track || !track.artists || track.artists.length === 0 || !track.album) {
+                console.error('Unexpected track data structure:', track);
+                return null;
+            }
+
+            // Safely access the image URL
+            const imageUrl = track.album.images && track.album.images.length > 1 ? track.album.images[1].url : null;
+
             return {
                 id: track.id,
                 name: track.name,
                 artist: track.artists[0].name,
                 album: track.album.name,
                 uri: track.uri,
-                image: track.album.images[1].url,
+                image: imageUrl,
                 preview: track.preview_url,
             };
-        });
+        }).filter(item => item !== null); // Filter out any null items
     } catch (error) {
         console.error('Error during fetching recently played songs:', error);
         return [];
