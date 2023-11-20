@@ -18,12 +18,6 @@
   animation: fadeIn .6s ease-in-out 1s forwards;
 }
 
-@media (prefers-color-scheme: light) {
-  .App{
-    background-color: rgba(255, 255, 255, 1);
-  }
-}
-
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -53,7 +47,6 @@
   opacity: 0;
   animation: dissolve .6s ease-out forwards;
   z-index: 100;
-  background-color: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(8px);
   display: flex;
   justify-content: center;
@@ -110,12 +103,25 @@
 
 .authButton button{
   width: 100%;
-  color: var(--black);
   text-decoration: none;
 }
 .authButton button a{
-  color: var(--black);
   text-decoration: none;
+}
+
+@media (prefers-color-scheme: light) {
+  .authOverlay{
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  .App{
+    background-color: rgba(255, 255, 255, 1);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .authOverlay{
+    background-color: rgba(0, 0, 0, 0.8);
+  }
 }
 
 @media screen and (max-width: 480px) {
