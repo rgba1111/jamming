@@ -2,27 +2,34 @@
 
 A small react web app that can search the Spotify API, add songs to playlists and save them your profile.
 
-## Project Requirements
+🔗 [Live Demo on Netlify](jammming-rgba1111.netlify.app)
 
-* Build a web app using React
-* Version control your application with Git and host the repository on GitHub
-* Integrate with Spotify or another API
-* Deploy your application
-* Write a README (using Markdown) that documents your project, including:
-    * The purpose of your project
-    * Technologies used
-    * Features
 
 ## Features
-* Users can search for songs by song title and other attributes like artist’s name, genre, etc.
-* Users can see information about each song like title, artist, and album for songs they queried
-* Users can export their custom playlist to their personal Spotify account
+
+### Log-in with Spotify, find your recently played songs or search for any title
+<img width="860" alt="recently-played" src="https://github.com/rgba1111/jammming/assets/103372269/6a79ad3e-9beb-422e-91a7-76fa0bbcb435">
+
+
+### Add songs from the search result to a playlist name and save it to your Spotify profile
+<img width="860" alt="create-playlist" src="https://github.com/rgba1111/jammming/assets/103372269/8e105bcb-2241-46c7-9adc-189aa2c930dc">
+
+### Dynamic UI colors based on the cover images 
+<img width="860" alt="colors" src="https://github.com/rgba1111/jammming/assets/103372269/340d0a75-5ca7-4b62-b333-b88898251d15">
+
+### Light Mode and Dark Mode!
+<img width="860" alt="light-dark" src="https://github.com/rgba1111/jammming/assets/103372269/ca725933-620e-406a-8b9c-60e8285793ac">
+
 
 ## Attributions
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+* This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+* Extracting dominat color from images by using [Color Thief](github.com/lokesh/color-thief).
+* Fonts: [IBM Plex Sans](https://fonts.google.com/specimen/IBM+Plex+Sans) & [Satisfy](https://fonts.google.com/specimen/Satisfy?preview.text=jammming&classification=Handwriting)
+* Icons: [Icon set 500+](https://www.figma.com/community/file/889189935061170195/icon-set-500-updated)
+* Tooltips: [React Tooltip](https://www.npmjs.com/package/react-tooltip)
+* Notifications: [React Hot Toasts](https://react-hot-toast.com/docs)
 
-Using [Icon set 500+](https://www.figma.com/community/file/889189935061170195/icon-set-500-updated).
 
 
 ## Available Scripts
