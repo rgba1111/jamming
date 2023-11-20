@@ -23,16 +23,6 @@
   --gray90: #1D2229;
 }
 
-::-moz-selection {
-  color: var(--green);
-  background: var(--background);
-}
-
-::selection {
-  color: var(--green);
-  background: var(--background);
-}
-
 .scrollContainer{
   border: 1px solid var(--accent) !important;
   border-radius: 0.75rem !important;
@@ -81,7 +71,7 @@ input{
   padding: .75rem 0.75rem;
   border-radius: 0.5rem;
   flex: 1 0 0;
-  border: 1px solid var(--input);
+  border: 1px solid var(--accent);
   background-color: var(--input);
   color: var(--primaryText);
   transition: all 0.2s ease-in-out;
@@ -293,6 +283,15 @@ form{
 }
 
 @media (prefers-color-scheme: light) {
+
+  ::-moz-selection {
+    background: var(--green);
+  }
+  
+  ::selection {
+    background: var(--green);
+  }
+
   :root {
     --primaryHighlight: var(--gray50);
     --secondaryHighlight: var(--gray90);
@@ -303,7 +302,7 @@ form{
     --primaryText: var(--black);
     --secondaryText: var(--gray90);
     --overlay: rgba(0, 0, 0, 0.05);
-    --input: var(--gray10);
+    --input: var(--gray05);
     --input-hover: rgba(0, 0, 0, 0.05);
     --input-top: rgba(0, 0, 0, 0.15);
   }
@@ -345,9 +344,23 @@ form{
     border: 1px solid var(--gray10) !important;
   }
 
+  .placeholder{background-color: #fff;}
+
+
 }
 
 @media (prefers-color-scheme: dark) {
+
+  ::-moz-selection {
+    color: var(--green);
+    background: var(--background);
+  }
+  
+  ::selection {
+    color: var(--green);
+    background: var(--background);
+  }
+
   :root {
     --primaryHighlight: var(--white);
     --secondaryHighlight: var(--white);

@@ -3,8 +3,19 @@
   top: 0;
   padding: .5rem 0 .5rem 0;
   z-index: 16;
-  background-color: var(--background);
   transition: all .6s ease-in-out;
+}
+
+
+@media (prefers-color-scheme: light) {
+  .stickySearch{
+    background-color: #fff;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .stickySearch{
+    background-color: var(--background);
+  }
 }
 
 .searchInput{

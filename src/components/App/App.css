@@ -17,6 +17,12 @@
   animation: fadeIn .6s ease-in-out 1s forwards;
 }
 
+@media (prefers-color-scheme: light) {
+  .App{
+    background-color: rgba(255, 255, 255, 1);
+  }
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;

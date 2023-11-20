@@ -47,7 +47,7 @@ export default function Playlist(props) {
             element.style.backgroundColor = 'var(--background)';
             nameBanner.style.opacity = '1';
         } else {
-            element.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+            element.style.backgroundColor = 'var(--tintedOverlay)';
             nameBanner.style.opacity = '0';
         }
     });

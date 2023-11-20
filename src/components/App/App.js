@@ -17,7 +17,7 @@ export default function App() {
   const [lastPlayedTracks, setlastPlayedTracks] = useState([]);
   
   const [addedTrackIds, setAddedTrackIds] = useState([]);
-  const [name, setName] = useState('My Playlist');
+  const [name, setName] = useState('My playlist');
   const [accessToken, setAccessToken] = useState('');
   const [changedName, setChangedName] = useState(false);
   const nameInputRef = useRef(null);
@@ -183,7 +183,7 @@ export default function App() {
     savePlaylist(name, trackURIs).then(() => {
       setPlaylist([]);
       setAddedTrackIds([]);
-      setName('My Playlist');
+      setName('My playlist');
       setChangedName(false);
 
       toast.success(`${name} saved to Spotify!`);
@@ -212,7 +212,7 @@ export default function App() {
 
     setPlaylist([]);
     setAddedTrackIds([]);
-    setName('My Playlist');
+    setName('My playlist');
     setChangedName(false);
     setAddedTrackIds([]);
     setImgSource('');

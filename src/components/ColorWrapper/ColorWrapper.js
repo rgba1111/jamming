@@ -6,7 +6,7 @@ export default function ColorWrapper({ imgSource, children }) {
   const [palette, setPalette] = useState([]);
   const [isPaletteLoading, setIsPaletteLoading] = useState(true);
 
-  const DEFAULT_BACKGROUND_STYLE = { background: 'linear-gradient(#1A1D23, var(--background))' };
+  const DEFAULT_BACKGROUND_STYLE = { background: 'linear-gradient(var(--foreground), var(--background))' };
 
   const getGradientStyle = (colors) => {
     if (colors && colors.length >= 2) {
