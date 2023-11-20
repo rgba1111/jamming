@@ -2,7 +2,7 @@
 
 A small react web app that can search the Spotify API, add songs to playlists and save them your profile.
 
-🔗 [Live Demo on Netlify](jammming-rgba1111.netlify.app)
+🔗 [Live Demo on Netlify](https://www.jammming-rgba1111.netlify.app)
 
 
 ## Features
