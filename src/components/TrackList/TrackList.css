@@ -4,7 +4,6 @@
     flex-direction: column;
     min-height: 65.031px;
     height: fit-content;
-    max-height: 1000px;
     animation: unfold 2s ease-out 1;
 }
 
@@ -13,7 +12,6 @@
 }
 .wrapper{
     height: fit-content;
-    max-height: 1000px;
 }
     
 #playlistPlaceholder-tooltip{
