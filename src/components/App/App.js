@@ -9,8 +9,6 @@ import { search, getAccessToken, savePlaylist, signIn, getLastPlayedTracks } fro
 import ColorWrapper from '../ColorWrapper/ColorWrapper';
 import toast, { Toaster } from 'react-hot-toast';
 
-import 'react-perfect-scrollbar/dist/css/styles.css';
-
 export default function App() {
   const [results, setResults] = useState([]);
   const [playlist, setPlaylist] = useState([]);
