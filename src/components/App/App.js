@@ -12,7 +12,7 @@ import toast, { Toaster } from 'react-hot-toast';
 export default function App() {
   const [results, setResults] = useState([]);
   const [playlist, setPlaylist] = useState([]);
-  
+
   const [addedTrackIds, setAddedTrackIds] = useState([]);
   const [name, setName] = useState('My playlist');
   const [accessToken, setAccessToken] = useState('');
@@ -108,7 +108,7 @@ export default function App() {
 
   useEffect(() => {
     const storedToken = localStorage.getItem('accessToken');
-  
+
     const fetchData = async () => {
       try {
         const token = await getAccessToken();
@@ -130,10 +130,10 @@ export default function App() {
       fetchData();
     }
   }, []);
-  
+
   const onSearch = (term) => {
     if (!accessToken || term.length < 1) {
-      if(!accessToken) {console.log('Access token not available.'); }
+      if (!accessToken) { console.log('Access token not available.'); }
       return;
     }
 
@@ -207,22 +207,36 @@ export default function App() {
     setAccessToken('');
     setSignedIn(false);
 
-    setPlaylist([]);
-    setAddedTrackIds([]);
-    setName('My playlist');
-    setChangedName(false);
-    setAddedTrackIds([]);
-    setImgSource('');
-    setResults([]);
-    setIsFlex('flexPlaceholder');
+    //   window.scroll({
+    //     top: 0,
+    //     left: 0,
+    //     behavior: "smooth"
+    // });
 
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: "smooth"
-  });
+    //   setPlaylist([]);
+    //   setAddedTrackIds([]);
+    //   setName('My playlist');
+    //   setChangedName(false);
+    //   setAddedTrackIds([]);
+    //   setImgSource('');
+    //   setResults([]);
+    //   setIsFlex('flexPlaceholder');
+    // Get all cookies from the document
+    
+    const cookies = document.cookie.split(";");
+
+    // Iterate over each cookie and set its expiry to a past date
+    for (let cookie of cookies) {
+      const eqPos = cookie.indexOf("=");
+      const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+    }
+
+    // Perform a hard reload of the current page
+    window.location.reload(true);
+
   };
-  
+
   useEffect(() => {
     // Function to fetch and set recently played tracks
     const fetchRecentlyPlayed = async () => {
@@ -237,7 +251,7 @@ export default function App() {
     if (accessToken) {
       fetchRecentlyPlayed();
     }
-  }, [accessToken]); 
+  }, [accessToken]);
 
 
   return (
@@ -274,7 +288,7 @@ export default function App() {
           </div>
         </div>
       )}
-  
+
       <div className="App">
         <div className="header">
           <h1>jammming</h1>
@@ -301,6 +315,6 @@ export default function App() {
       </div>
     </>
   );
-  
-  
+
+
 }
