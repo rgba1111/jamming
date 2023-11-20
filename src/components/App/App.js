@@ -144,6 +144,7 @@ export default function App() {
           setPlaceholder('No results. Try another search term!');
           return;
         } else {
+          setResults('');
           const updatedResults = results.map((track) => {
             if (addedTrackIds.includes(track.id)) {
               return { ...track, wasAdded: true };
@@ -222,7 +223,7 @@ export default function App() {
     //   setResults([]);
     //   setIsFlex('flexPlaceholder');
     // Get all cookies from the document
-    
+
     const cookies = document.cookie.split(";");
 
     // Iterate over each cookie and set its expiry to a past date
@@ -241,7 +242,7 @@ export default function App() {
     // Function to fetch and set recently played tracks
     const fetchRecentlyPlayed = async () => {
       try {
-        const tracks = await getLastPlayedTracks(accessToken);
+        const tracks = await getLastPlayedTracks();
         setResults(tracks);
       } catch (error) {
         console.error("Error fetching recently played tracks:", error);
