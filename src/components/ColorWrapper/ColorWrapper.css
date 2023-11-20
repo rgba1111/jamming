@@ -19,3 +19,10 @@
         opacity: .2;
     }
 }
+
+
+@media screen and (max-width: 480px) {
+    .colorWrap {
+        min-width: calc(100% - 2rem);
+    }
+  }

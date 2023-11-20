@@ -16,7 +16,7 @@ export default function Playlist(props) {
 
     const scrollUp = () => {
         var playlist = document.querySelector('.playlist');
-        var offsetTopp = playlist.offsetTop;
+        var offsetTopp = playlist.offsetTop - 16;
         window.scroll({
             top: offsetTopp,
             left: offsetTopp,

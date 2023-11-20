@@ -202,3 +202,12 @@
     }
     .playlist{border: 1px solid var(--foreground);}
 }
+
+@media screen and (max-width: 480px) {
+    .playlistActions .textButton{
+        display: none;
+    }
+    .playlistName{
+        font-size: 1.6rem;
+      }
+  }
